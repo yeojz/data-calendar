@@ -4,11 +4,11 @@ A React calendar component designed to be flexible in presenting events
 
 
 ## About
-`data-calendar` is a [React.js](http://http://facebook.github.io/react/) component which aims to provide common calenar functionality.
+`data-calendar` is a [React.js](http://http://facebook.github.io/react/) component which aims to provide common calendar functionality.
 
 Currently usable. But very much Work-In-Progress.
 
-You can find an example usage in the example folder.
+You can find a simple month calendar implementation in the `example` folder.
 
 
 ## Installation
