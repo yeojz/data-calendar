@@ -14,7 +14,9 @@
   "keywords": [
     "react",
     "reactjs",
-    "calendar"
+    "react-component",
+    "calendar",
+    "month"
   ],
   "author": "Gerald Yeo <contact@fusedthought.com>",
   "license": "MIT",

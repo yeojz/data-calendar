@@ -13,15 +13,56 @@ var Events = React.createClass({
     eventRenderer: React.PropTypes.func
   },
 
+
+
+
+  /*
+   * Private Use Only
+   * *************************************************** */
+
+  __eventDataGetterDefault: function(){
+    return (<div className='data-calendar-event-placeholder' />);
+  },
+
+
+
+
+  /*
+   * Render Helper
+   * *************************************************** */
+
+   // Note:
+   // 3 possible return Functions
+  _getEventDetails: function(){
+    if (typeof this.props.eventRenderer === 'function'){
+      return this.props.eventRenderer(this.props.data);
+    }
+    
+    if (typeof this.props.eventDataGetter === 'function'){
+      return this.props.eventDataGetter(this.props.data);
+    }
+
+    return this.__eventDataGetterDefault();
+  },
+
+
+
+
+  /*
+   * Render
+   * *************************************************** */
+
   render: function() {
 
     var classes = cx({
       'data-calendar-event': true
     });
 
+    var event = this._getEventDetails();
+    
     return (
       <div className={classes}>
-        Events
+        {event}
       </div>
     );
   }

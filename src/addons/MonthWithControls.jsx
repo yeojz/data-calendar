@@ -11,7 +11,7 @@ var MonthWithControls = React.createClass({
   },
 
   propTypes: {
-    eventDataGetter: React.PropTypes.func.isRequired,
+    eventDataGetter: React.PropTypes.func,
     eventRenderer: React.PropTypes.func,
     eventsGetter: React.PropTypes.func.isRequired,
 
@@ -45,7 +45,7 @@ var MonthWithControls = React.createClass({
    * *************************************************** */
   __getDate: function(){
     var date = this.state.year + '-' + this.state.month;
-    return moment(date, 'YYYY-MM');
+    return moment(date, 'YYYYMM');
   },
 
   __monthShift: function(value){

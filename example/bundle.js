@@ -68,7 +68,7 @@ React.render(
 );
 
 
-},{"../src/addons":151,"react":149}],2:[function(require,module,exports){
+},{"../src/addons":150,"react":149}],2:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -21403,6 +21403,12 @@ module.exports = warning;
 module.exports = require('./lib/React');
 
 },{"./lib/React":31}],150:[function(require,module,exports){
+module.exports = {
+  Month: require('./addons/MonthWithControls.jsx')
+};
+
+
+},{"./addons/MonthWithControls.jsx":151}],151:[function(require,module,exports){
 var React = require('react'),
     moment = require('moment');
 
@@ -21416,7 +21422,7 @@ var MonthWithControls = React.createClass({displayName: "MonthWithControls",
   },
 
   propTypes: {
-    eventDataGetter: React.PropTypes.func.isRequired,
+    eventDataGetter: React.PropTypes.func,
     eventRenderer: React.PropTypes.func,
     eventsGetter: React.PropTypes.func.isRequired,
 
@@ -21450,7 +21456,7 @@ var MonthWithControls = React.createClass({displayName: "MonthWithControls",
    * *************************************************** */
   __getDate: function(){
     var date = this.state.year + '-' + this.state.month;
-    return moment(date, 'YYYY-MM');
+    return moment(date, 'YYYYMM');
   },
 
   __monthShift: function(value){
@@ -21533,13 +21539,7 @@ var MonthWithControls = React.createClass({displayName: "MonthWithControls",
 module.exports = MonthWithControls;
 
 
-},{"../core/Month.jsx":154,"../helpers/cx":156,"moment":3,"react":149}],151:[function(require,module,exports){
-module.exports = {
-  Month: require('./MonthWithControls.jsx')
-};
-
-
-},{"./MonthWithControls.jsx":150}],152:[function(require,module,exports){
+},{"../core/Month.jsx":154,"../helpers/cx":156,"moment":3,"react":149}],152:[function(require,module,exports){
 var React = require('react'),
     moment = require('moment');
 
@@ -21664,15 +21664,56 @@ var Events = React.createClass({displayName: "Events",
     eventRenderer: React.PropTypes.func
   },
 
+
+
+
+  /*
+   * Private Use Only
+   * *************************************************** */
+
+  __eventDataGetterDefault: function(){
+    return (React.createElement("div", {className: "data-calendar-event-placeholder"}));
+  },
+
+
+
+
+  /*
+   * Render Helper
+   * *************************************************** */
+
+   // Note:
+   // 3 possible return Functions
+  _getEventDetails: function(){
+    if (typeof this.props.eventRenderer === 'function'){
+      return this.props.eventRenderer(this.props.data);
+    }
+    
+    if (typeof this.props.eventDataGetter === 'function'){
+      return this.props.eventDataGetter(this.props.data);
+    }
+
+    return this.__eventDataGetterDefault();
+  },
+
+
+
+
+  /*
+   * Render
+   * *************************************************** */
+
   render: function() {
 
     var classes = cx({
       'data-calendar-event': true
     });
 
+    var event = this._getEventDetails();
+    
     return (
       React.createElement("div", {className: classes}, 
-        "Events"
+        event
       )
     );
   }
@@ -21698,7 +21739,7 @@ var Month = React.createClass({displayName: "Month",
   },
 
   propTypes: {
-    eventDataGetter: React.PropTypes.func.isRequired,
+    eventDataGetter: React.PropTypes.func,
     eventRenderer: React.PropTypes.func,
     eventsGetter: React.PropTypes.func.isRequired,
 
@@ -21724,9 +21765,10 @@ var Month = React.createClass({displayName: "Month",
    * *************************************************** */
 
   __getDate: function(){
-    var date = this.props.year + '-' + this.props.month;
-    return moment(date, 'YYYY-MM');
+    var date = this.props.year + '' + this.props.month;
+    return moment(date, 'YYYYMM');
   },
+
 
   __getMonthRange: function(){
     var date = this.__getDate();
@@ -21736,6 +21778,7 @@ var Month = React.createClass({displayName: "Month",
       end: date.endOf('month').format('YYYYMMDD')
     };
   },
+
 
   __getEvents: function(date){
     var events = [],
@@ -21810,7 +21853,7 @@ var Month = React.createClass({displayName: "Month",
     for (var i = 0; i < numberOfWeeks; i++){
 
       // Create New Instance
-      var m = moment(date, 'YYYY-MM'),
+      var m = this.__getDate(),
           start = i * 7;
 
       // Get Start of the week
@@ -22026,13 +22069,14 @@ module.exports = invariant;
 
 }).call(this,require('_process'))
 },{"_process":2}],158:[function(require,module,exports){
-var moment = require('moment');
 
-module.exports = function(date){
+/*
+ *  Calculates the Number of Weeks in a Month
+ *
+ *  @mdate Moment Date Object
+ */
+module.exports = function(mdate){
   var numDaysInWeek = 7;
-
-  // Momentize Date
-  var mdate = moment(date, 'YYYY-MM');
 
   // First Integer Day (Sun/Mon/...) of the Month
   var offset = parseInt(mdate.weekday());
@@ -22044,4 +22088,4 @@ module.exports = function(date){
 };
 
 
-},{"moment":3}]},{},[1]);
+},{}]},{},[1]);

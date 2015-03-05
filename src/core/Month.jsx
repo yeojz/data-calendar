@@ -14,7 +14,7 @@ var Month = React.createClass({
   },
 
   propTypes: {
-    eventDataGetter: React.PropTypes.func.isRequired,
+    eventDataGetter: React.PropTypes.func,
     eventRenderer: React.PropTypes.func,
     eventsGetter: React.PropTypes.func.isRequired,
 
@@ -40,8 +40,8 @@ var Month = React.createClass({
    * *************************************************** */
 
   __getDate: function(){
-    var date = this.props.year + '-' + this.props.month;
-    return moment(date, 'YYYY-MM');
+    var date = this.props.year + '' + this.props.month;
+    return moment(date, 'YYYYMM');
   },
 
   __getMonthRange: function(){
@@ -72,7 +72,6 @@ var Month = React.createClass({
 
     return events;
   },
-
 
   __getDay: function(date){
 
@@ -125,8 +124,8 @@ var Month = React.createClass({
 
     for (var i = 0; i < numberOfWeeks; i++){
 
-      // Create New Instance
-      var m = moment(date, 'YYYY-MM'),
+      // Create New Instances
+      var m = this.__getDate(),
           start = i * 7;
 
       // Get Start of the week

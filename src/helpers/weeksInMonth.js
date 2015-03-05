@@ -1,10 +1,11 @@
-var moment = require('moment');
 
-module.exports = function(date){
+/*
+ *  Calculates the Number of Weeks in a Month
+ *
+ *  @mdate Moment Date Object
+ */
+module.exports = function(mdate){
   var numDaysInWeek = 7;
-
-  // Momentize Date
-  var mdate = moment(date, 'YYYY-MM');
 
   // First Integer Day (Sun/Mon/...) of the Month
   var offset = parseInt(mdate.weekday());
