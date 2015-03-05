@@ -14,9 +14,9 @@ var Month = React.createClass({
   },
 
   propTypes: {
-    eventDataGetter: React.PropTypes.func,
-    eventRenderer: React.PropTypes.func,
-    eventsGetter: React.PropTypes.func.isRequired,
+    entryDataGetter: React.PropTypes.func,
+    entryRenderer: React.PropTypes.func,
+    entriesGetter: React.PropTypes.func.isRequired,
 
     year: React.PropTypes.number.isRequired,
     month: React.PropTypes.number.isRequired
@@ -53,29 +53,29 @@ var Month = React.createClass({
     };
   },
 
-  __getEvents: function(date){
-    var events = [],
-        eventsList = this.props.eventsGetter(date);
+  __getEntries: function(date){
+    var entries = [],
+        entryList = this.props.entryGetter(date);
 
 
-    if (typeof eventsList !== 'undefined'){
-      events = eventsList.map(function(event, i){
+    if (typeof entryList !== 'undefined'){
+      entries = entryList.map(function(entry, i){
         return (
           <Event
-              data={event}
-              eventDataGetter={this.props.eventDataGetter}
-              eventRenderer={this.props.eventRenderer}
+              data={entry}
+              entryDataGetter={this.props.entryDataGetter}
+              entryRenderer={this.props.entryRenderer}
               key={i} />
         );
       }.bind(this));
     }
 
-    return events;
+    return entries;
   },
 
   __getDay: function(date){
 
-    var events = this.__getEvents(date);
+    var entries = this.__getEntries(date);
 
     return (
       <Day
@@ -85,7 +85,7 @@ var Month = React.createClass({
         rangeEnd={this.state.monthEnd}
         dateShow={true}>
 
-        {events}
+        {entries}
       </Day>
     );
 

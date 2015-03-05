@@ -32,16 +32,16 @@ var View = React.createClass({
     }]
   },
 
-  _eventsGetter: function(date){
+  _entriesGetter: function(date){
     return this._data[date];
   },
 
-  _eventDataGetter: function(eventData){
-    return eventData.title || 'Event';
+  _entryDataGetter: function(entryData){
+    return entryData.title || 'Event';
   },
 
-  _eventRenderer: function(eventData){
-    return eventData.title || 'Event';
+  _entryRenderer: function(entryData){
+    return entryData.title || 'Event';
   },
 
   render: function() {
@@ -50,9 +50,9 @@ var View = React.createClass({
       <Month
         year={2015}
         month={3}
-        eventDataGetter={this._eventDataGetter}
-        eventRenderer={this._eventRenderer}
-        eventsGetter={this._eventsGetter}
+        entryDataGetter={this._entryDataGetter}
+        entryRenderer={this._entryRenderer}
+        entriesGetter={this._entriesGetter}
       />
     );
   }

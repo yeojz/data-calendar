@@ -40,7 +40,7 @@ var Day = React.createClass({
    * Render Helpers
    * *************************************************** */
 
-  _getEvents: function(){
+  _getEntries: function(){
 
     var children = [];
 
@@ -51,8 +51,8 @@ var Day = React.createClass({
       }
 
       invariant(
-        child.type.__DataCalendarEvent__,
-        'child type should be <Event />'
+        child.type.__DataCalendarEntry__,
+        'child type should be an <Entry />'
       );
 
       children.push(child);
@@ -70,7 +70,7 @@ var Day = React.createClass({
 
   render: function() {
 
-    var events = this._getEvents(),
+    var entries = this._getEntries(),
         header = '';
 
     if (this.props.dateShow) {
@@ -97,7 +97,7 @@ var Day = React.createClass({
     return (
       <div className={classes}>
         {header}
-        {events}
+        {entries}
       </div>
     );
   }

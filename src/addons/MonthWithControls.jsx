@@ -11,22 +11,34 @@ var MonthWithControls = React.createClass({
   },
 
   propTypes: {
-    eventDataGetter: React.PropTypes.func,
-    eventRenderer: React.PropTypes.func,
-    eventsGetter: React.PropTypes.func.isRequired,
+    entryDataGetter: React.PropTypes.func,
+    entryRenderer: React.PropTypes.func,
+    entriesGetter: React.PropTypes.func.isRequired,
 
     year: React.PropTypes.number.isRequired,
     month: React.PropTypes.number.isRequired,
 
     showControls: React.PropTypes.bool,
-    showMonthTitle: React.PropTypes.bool
+    showMonthTitle: React.PropTypes.bool,
+
+    btnPrev: React.PropTypes.oneOfType([
+      React.PropTypes.string,
+      React.PropTypes.element
+    ]),
+
+    btnNext: React.PropTypes.oneOfType([
+      React.PropTypes.string,
+      React.PropTypes.element
+    ])
   },
 
   getDefaultProps: function() {
     return {
       showControls: true,
       showMonthTitle: true,
-      monthTitleFormat: 'MMMM YYYY'
+      monthTitleFormat: 'MMMM YYYY',
+      btnNext: (<button>Next</button>),
+      btnPrev: (<button>Prev</button>)
     };
   },
 
@@ -101,8 +113,8 @@ var MonthWithControls = React.createClass({
     if (this.props.showControls){
       controls = (
         <div className='data-calendar-controls'>
-          <button onClick={this._prevMonth}>Prev</button>
-          <button onClick={this._nextMonth}>Next</button>
+          <div className='data-calendar-controls-next' onClick={this._prevMonth}>{this.props.btnPrev}</div>
+          <div className='data-calendar-controls-prev' onClick={this._nextMonth}>{this.props.btnNext}</div>
         </div>
       );
     }
@@ -113,9 +125,9 @@ var MonthWithControls = React.createClass({
         {controls}
 
         <Month
-          eventDataGetter={this.props.eventDataGetter}
-          eventRenderer={this.props.eventRenderer}
-          eventsGetter={this.props.eventsGetter}
+          entryDataGetter={this.props.entryDataGetter}
+          entryRenderer={this.props.entryRenderer}
+          entriesGetter={this.props.entriesGetter}
 
           year={this.state.year}
           month={this.state.month}
