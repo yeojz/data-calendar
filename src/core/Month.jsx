@@ -5,15 +5,18 @@ var cx = require('../helpers/cx'),
     weeksInMonth = require('../helpers/weeksInMonth');
 
 var Day = require('./Day.jsx'),
-    Event = require('./Event.jsx'),
+    Entry = require('./Entry.jsx'),
     Week = require('./Week.jsx');
 
 var Month = React.createClass({
+
   statics: {
     __DataCalendarMonth__: true
   },
 
   propTypes: {
+    className: React.PropTypes.string,
+
     entryDataGetter: React.PropTypes.func,
     entryRenderer: React.PropTypes.func,
     entriesGetter: React.PropTypes.func.isRequired,
@@ -22,15 +25,6 @@ var Month = React.createClass({
     month: React.PropTypes.number.isRequired
   },
 
-
-  getInitialState: function() {
-    var range = this.__getMonthRange();
-
-    return {
-      monthStart: range.start,
-      monthEnd: range.end
-    };
-  },
 
 
 
@@ -55,13 +49,13 @@ var Month = React.createClass({
 
   __getEntries: function(date){
     var entries = [],
-        entryList = this.props.entryGetter(date);
+        entryList = this.props.entriesGetter(date);
 
 
     if (typeof entryList !== 'undefined'){
       entries = entryList.map(function(entry, i){
         return (
-          <Event
+          <Entry
               data={entry}
               entryDataGetter={this.props.entryDataGetter}
               entryRenderer={this.props.entryRenderer}
@@ -76,13 +70,14 @@ var Month = React.createClass({
   __getDay: function(date){
 
     var entries = this.__getEntries(date);
+    var month = this.__getMonthRange();
 
     return (
       <Day
         key={date}
         date={date}
-        rangeStart={this.state.monthStart}
-        rangeEnd={this.state.monthEnd}
+        rangeStart={month.start}
+        rangeEnd={month.end}
         dateShow={true}>
 
         {entries}
@@ -151,7 +146,7 @@ var Month = React.createClass({
     var classes = cx({
       'data-calendar': true,
       'data-calendar--month': true
-    });
+    }) + ' ' + this.props.className;
 
     return (
       <div className={classes}>

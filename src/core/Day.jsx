@@ -14,10 +14,7 @@ var Day = React.createClass({
   propTypes: {
     date: React.PropTypes.string,
     dateShow: React.PropTypes.bool,
-    dateFormat: React.PropTypes.string,
-
-    rangeStart: React.PropTypes.string,
-    rangeEnd: React.PropTypes.string
+    dateFormat: React.PropTypes.string
   },
 
   getDefaultProps: function() {

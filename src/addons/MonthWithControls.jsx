@@ -3,7 +3,8 @@ var React = require('react'),
 
 var cx = require('../helpers/cx');
 
-var Month = require('../core/Month.jsx');
+var Month = require('../core/Month.jsx'),
+    DayNames = require('../core/DayNames.jsx');
 
 var MonthWithControls = React.createClass({
   statics: {
@@ -11,6 +12,8 @@ var MonthWithControls = React.createClass({
   },
 
   propTypes: {
+    className: React.PropTypes.string,
+    
     entryDataGetter: React.PropTypes.func,
     entryRenderer: React.PropTypes.func,
     entriesGetter: React.PropTypes.func.isRequired,
@@ -20,6 +23,9 @@ var MonthWithControls = React.createClass({
 
     showControls: React.PropTypes.bool,
     showMonthTitle: React.PropTypes.bool,
+
+    dayNameFormat: React.PropTypes.string,
+    monthTitleFormat: React.PropTypes.string,
 
     btnPrev: React.PropTypes.oneOfType([
       React.PropTypes.string,
@@ -36,6 +42,7 @@ var MonthWithControls = React.createClass({
     return {
       showControls: true,
       showMonthTitle: true,
+      dayNameFormat: 'short',
       monthTitleFormat: 'MMMM YYYY',
       btnNext: (<button>Next</button>),
       btnPrev: (<button>Prev</button>)
@@ -97,7 +104,7 @@ var MonthWithControls = React.createClass({
     var classes = cx({
       'data-calendar-addons': true,
       'data-calendar-addons--month': true
-    });
+    }) + ' ' + this.props.className;
 
     var monthTitle = '';
     var controls = '';
@@ -113,17 +120,19 @@ var MonthWithControls = React.createClass({
     if (this.props.showControls){
       controls = (
         <div className='data-calendar-controls'>
-          <div className='data-calendar-controls-next' onClick={this._prevMonth}>{this.props.btnPrev}</div>
-          <div className='data-calendar-controls-prev' onClick={this._nextMonth}>{this.props.btnNext}</div>
+          <div className='data-calendar-controls-prev' onClick={this._prevMonth}>{this.props.btnPrev}</div>
+          <div className='data-calendar-controls-next' onClick={this._nextMonth}>{this.props.btnNext}</div>
         </div>
       );
     }
 
     return (
       <div className={classes}>
+
         {monthTitle}
         {controls}
 
+        <DayNames type={this.props.dayNameFormat} />
         <Month
           entryDataGetter={this.props.entryDataGetter}
           entryRenderer={this.props.entryRenderer}

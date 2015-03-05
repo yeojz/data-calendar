@@ -1,11 +1,13 @@
 {
   "name": "data-calendar",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A React calendar component designed to be flexible in presenting events",
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:example": "browserify -t reactify example/example.jsx -o example/bundle.js"
+    "build": "./bin/build-lib.sh",
+    "build:example": "./bin/build-example.sh",
+    "lint:css": "scss-lint -f JSON -o ./test/logs/scss-lint.json ./src/styles/*.scss"
   },
   "repository": {
     "type": "git",
@@ -24,9 +26,11 @@
     "url": "https://github.com/yeojz/data-calendar/issues"
   },
   "homepage": "https://github.com/yeojz/data-calendar",
-  "license": "MIT",
   "devDependencies": {
+    "autoprefixer": "^5.1.0",
     "browserify": "^9.0.3",
+    "clean-css": "^3.1.4",
+    "node-sass": "^2.0.1",
     "reactify": "^1.0.0"
   },
   "dependencies": {

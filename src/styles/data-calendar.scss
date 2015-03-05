@@ -1,0 +1,126 @@
+
+$dc-day-width: 100px;
+$dc-day-height: 100px;
+$dc-width: 7 * $dc-day-width;
+
+$dc-day-border-color: #eee;
+
+$dc-title-color: #fff;
+$dc-title-background: #1565c0;
+
+$dc-weekend-background: #fcfcfc;
+
+
+.data-calendar,
+.data-calendar-addons,
+.data-calendar-week,
+.data-calendar-day,
+.data-calendar-daynames,
+.data-calendar-daynames-day {
+  box-sizing: border-box;
+}
+
+
+
+.data-calendar,
+.data-calendar-addons {
+  position: relative;
+  width: $dc-width;
+  box-shadow: 3px 6px 10px rgba(0, 0, 0, 0.1);
+}
+
+.data-calendar-week,
+.data-calendar-daynames {
+  align-items: stretch;
+  clear: both;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+}
+
+.data-calendar-day,
+.data-calendar-daynames-day {
+  display: inline-block;
+  flex: 0 0 auto;
+  height: $dc-day-height;
+  position: relative;
+  width: $dc-day-width;
+
+  border: 1px $dc-day-border-color solid;
+}
+
+.data-calendar-day {
+  &:first-child,
+  &:last-child {
+    background: $dc-weekend-background;
+  }
+}
+
+
+.data-calendar-daynames-day {
+  border-width: 0 0 1px 0;
+  height: 2em;
+  padding: 0.5em;
+  text-align: right;
+}
+
+
+.data-calendar-title {
+  color: $dc-title-color;
+  text-align: left;
+  background-color: $dc-title-background;
+  padding: 1em;
+}
+
+.data-calendar-controls {
+  position: absolute;
+  right: 1em;
+  text-align: right;
+  top: 1em;
+  width: 40px;
+  
+  button {
+    display: none;
+  }
+}
+
+.data-calendar-controls-next {
+
+  &:after {
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent; 
+    border-left: 10px solid #fff;
+    content: '';
+    cursor: pointer;
+    display: inline-block;
+    height: 0;
+    margin-left: 5px;
+    width: 0;
+  }
+}
+
+.data-calendar-controls-prev {
+  float: left;
+
+  &:before {
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent; 
+    border-right: 10px solid #fff;
+    content: '';
+    cursor: pointer;
+    display: inline-block;
+    height: 0;
+    margin-left: 5px;
+    width: 0;
+  }
+}
+
+
+.date-calendar-day-header {
+  text-align: right;
+  margin: 0.3em;
+}
+
+.data-calendar-day--outOfMonth {
+  opacity: 0.4;
+}
