@@ -1,15 +1,16 @@
 /*
- *  children
+ * children
  *
- *  Takes in a list of child nodes and
- *  checks them against their statics
+ * Takes in a list of child nodes and
+ * checks them against their statics
  *
- *  @param Array this.props.children
- *  @param string the object key for the static paramter
- *  @param string (Optional) sample element
+ * @param array   this.props.children
+ * @param string  the object key for the static paramter
+ * @param string  sample element
  *
- *  @returns Array of child nodes
+ * @returns array resultant children nodes
  */
+
 var React = require('react');
 var invariant = require('./invariant');
 var ReactChildren = React.Children;

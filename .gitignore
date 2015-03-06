@@ -8,3 +8,4 @@ npm-debug.log
 *.pem
 *.pyc
 example/assets
+dist

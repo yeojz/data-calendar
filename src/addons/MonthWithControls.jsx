@@ -100,7 +100,7 @@ var MonthWithControls = React.createClass({
     this.setState({
       year: parseInt(today.format('YYYY')),
       month: parseInt(today.format('MM'))
-    })
+    });
   },
 
 
@@ -135,7 +135,7 @@ var MonthWithControls = React.createClass({
       'data-calendar-addons': true,
       'data-calendar-addons--month': true
     }, this.props.className);
-    
+
     return (
       <div className={classes}>
 
@@ -143,6 +143,7 @@ var MonthWithControls = React.createClass({
         {controls}
 
         <DayNames type={this.props.dayNameFormat} />
+
         <Month
           entryDataGetter={this.props.entryDataGetter}
           entryRenderer={this.props.entryRenderer}

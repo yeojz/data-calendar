@@ -1,4 +1,9 @@
-'use strict';
+/*
+ * dayNames
+ *
+ * @param string    predefined set of name types in moment.js
+ * @returns array   the list of day names of a week
+ */
 
 var moment = require('moment');
 

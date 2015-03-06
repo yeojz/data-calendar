@@ -1,9 +1,10 @@
-
 /*
- *  Calculates the Number of Weeks in a Month
+ * Calculates the Number of Weeks in a Month
  *
- *  @mDate Moment Date Object
+ * @param object    moment.js Date object
+ * @return integer  number of weeks in the month
  */
+
 module.exports = function(mDate){
   var numDaysInWeek = 7;
 
@@ -13,5 +14,5 @@ module.exports = function(mDate){
   // Get the last day of the month
   var lastDay = parseInt(mDate.endOf('month').format('D'));
 
-  return Math.ceil( (lastDay + offset) / numDaysInWeek);
+  return Math.ceil((lastDay + offset) / numDaysInWeek);
 };
