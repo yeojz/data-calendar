@@ -3,13 +3,11 @@ var React = require('react');
 var classNames = require('../helpers/classNames'),
     dayNameHelper = require('../helpers/dayNames');
 
-var DayNames = React.createClass({
+var moduleProps = require('../propTypes/daysOfWeekProps');
 
-  propTypes: {
-    className: React.PropTypes.string,
+var DaysOfWeek = React.createClass({
 
-    type: React.PropTypes.string
-  },
+  propTypes: moduleProps,
 
   getDefaultProps: function() {
     return {
@@ -23,14 +21,14 @@ var DayNames = React.createClass({
 
     names = names.map(function(name, i){
       return (
-        <div key={i} className='data-calendar-daynames-day'>
+        <div key={i} className='data-calendar-daysofweek-day'>
           {name}
         </div>
       );
     });
 
     var classes = classNames({
-      'data-calendar-daynames': true
+      'data-calendar-daysofweek': true
     }, this.props.className);
 
     return (
@@ -41,4 +39,4 @@ var DayNames = React.createClass({
   }
 });
 
-module.exports = DayNames;
+module.exports = DaysOfWeek;

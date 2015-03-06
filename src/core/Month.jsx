@@ -4,6 +4,8 @@ var React = require('react'),
 var classNames = require('../helpers/classNames'),
     weeksInMonth = require('../helpers/weeksInMonth');
 
+var moduleProps = require('../propTypes/monthProps');
+
 var Day = require('./Day.jsx'),
     Entry = require('./Entry.jsx'),
     Week = require('./Week.jsx');
@@ -14,16 +16,7 @@ var Month = React.createClass({
     __DataCalendarMonth__: true
   },
 
-  propTypes: {
-    className: React.PropTypes.string,
-
-    entryDataGetter: React.PropTypes.func,
-    entryRenderer: React.PropTypes.func,
-    entriesGetter: React.PropTypes.func.isRequired,
-
-    year: React.PropTypes.number.isRequired,
-    month: React.PropTypes.number.isRequired
-  },
+  propTypes: moduleProps,
 
 
   componentWillMount: function() {

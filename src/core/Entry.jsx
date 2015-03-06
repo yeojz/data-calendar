@@ -2,19 +2,15 @@ var React = require('react');
 
 var classNames = require('../helpers/classNames');
 
+var moduleProps = require('../propTypes/entryProps');
+
 var Entry = React.createClass({
 
   statics: {
     __DataCalendarEntry__: true
   },
 
-  propTypes: {
-    className: React.PropTypes.string,
-    
-    data: React.PropTypes.object.isRequired,
-    entryDataGetter: React.PropTypes.func.isRequired,
-    entryRenderer: React.PropTypes.func
-  },
+  propTypes: moduleProps,
 
 
 

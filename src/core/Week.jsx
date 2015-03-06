@@ -1,7 +1,7 @@
 var React = require('react');
 
-var classNames = require('../helpers/classNames'),
-    children = require('../helpers/children');
+var children = require('../helpers/children'),
+    classNames = require('../helpers/classNames');
 
 var Week = React.createClass({
 

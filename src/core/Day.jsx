@@ -1,8 +1,10 @@
 var React = require('react'),
     moment = require('moment');
 
-var classNames = require('../helpers/classNames'),
-    children = require('../helpers/children');
+var children = require('../helpers/children'),
+    classNames = require('../helpers/classNames');
+
+var moduleProps = require('../propTypes/dayProps');
 
 var Day = React.createClass({
 
@@ -10,13 +12,7 @@ var Day = React.createClass({
     __DataCalendarDay__: true
   },
 
-  propTypes: {
-    className: React.PropTypes.string,
-
-    date: React.PropTypes.string,
-    dateShow: React.PropTypes.bool,
-    dateFormat: React.PropTypes.string
-  },
+  propTypes: moduleProps,
 
   getDefaultProps: function() {
     return {

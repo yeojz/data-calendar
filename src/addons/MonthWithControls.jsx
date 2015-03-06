@@ -1,10 +1,22 @@
 var React = require('react'),
     moment = require('moment');
 
-var classNames = require('../helpers/classNames');
+var classNames = require('../helpers/classNames'),
+    mergePropTypes = require('../helpers/mergePropTypes'),
+    objectFilter = require('../helpers/objectFilter');
+
+var monthProps = require('../propTypes/monthProps'),
+    moduleProps = require('../propTypes/monthWithControlsProps');
 
 var Month = require('../core/Month.jsx'),
-    DayNames = require('../core/DayNames.jsx');
+    DaysOfWeek = require('../core/DaysOfWeek.jsx');
+
+
+
+
+
+
+
 
 var MonthWithControls = React.createClass({
 
@@ -12,32 +24,9 @@ var MonthWithControls = React.createClass({
     __DataCalendarMonthAddons__: true
   },
 
-  propTypes: {
-    className: React.PropTypes.string,
+  _propTypeKeys: Object.keys(moduleProps),
 
-    entryDataGetter: React.PropTypes.func,
-    entryRenderer: React.PropTypes.func,
-    entriesGetter: React.PropTypes.func.isRequired,
-
-    year: React.PropTypes.number.isRequired,
-    month: React.PropTypes.number.isRequired,
-
-    showControls: React.PropTypes.bool,
-    showMonthTitle: React.PropTypes.bool,
-
-    dayNameFormat: React.PropTypes.string,
-    monthTitleFormat: React.PropTypes.string,
-
-    btnPrev: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.element
-    ]),
-
-    btnNext: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.element
-    ])
-  },
+  propTypes: mergePropTypes(monthProps, moduleProps),
 
   getDefaultProps: function() {
     return {
@@ -136,19 +125,18 @@ var MonthWithControls = React.createClass({
       'data-calendar-addons--month': true
     }, this.props.className);
 
+    var props = objectFilter(this.props, this._propTypeKeys);
+
     return (
       <div className={classes}>
 
         {monthTitle}
         {controls}
 
-        <DayNames type={this.props.dayNameFormat} />
+        <DaysOfWeek type={this.props.dayNameFormat} />
 
         <Month
-          entryDataGetter={this.props.entryDataGetter}
-          entryRenderer={this.props.entryRenderer}
-          entriesGetter={this.props.entriesGetter}
-
+          {...props}
           year={this.state.year}
           month={this.state.month}
         />

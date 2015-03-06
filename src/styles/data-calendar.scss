@@ -15,8 +15,8 @@ $dc-weekend-background: #fcfcfc;
 .data-calendar-addons,
 .data-calendar-week,
 .data-calendar-day,
-.data-calendar-daynames,
-.data-calendar-daynames-day {
+.data-calendar-daysofweek,
+.data-calendar-daysofweek-day {
   box-sizing: border-box;
 }
 
@@ -30,7 +30,7 @@ $dc-weekend-background: #fcfcfc;
 }
 
 .data-calendar-week,
-.data-calendar-daynames {
+.data-calendar-daysofweek {
   align-items: stretch;
   clear: both;
   display: flex;
@@ -39,7 +39,7 @@ $dc-weekend-background: #fcfcfc;
 }
 
 .data-calendar-day,
-.data-calendar-daynames-day {
+.data-calendar-daysofweek-day {
   display: inline-block;
   flex: 0 0 auto;
   height: $dc-day-height;
@@ -57,7 +57,7 @@ $dc-weekend-background: #fcfcfc;
 }
 
 
-.data-calendar-daynames-day {
+.data-calendar-daysofweek-day {
   border-width: 0 0 1px 0;
   height: 2em;
   padding: 0.5em;
