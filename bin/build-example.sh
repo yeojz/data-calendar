@@ -11,5 +11,5 @@ node_modules/node-sass/bin/node-sass \
 autoprefixer ./example/assets/bundle.css
 
 # Make JS
-browserify -t reactify ./example/example.jsx -o ./example/assets/bundle.js
+# browserify -t reactify ./example/example.jsx -o ./example/assets/bundle.js
 

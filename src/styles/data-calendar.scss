@@ -73,19 +73,30 @@ $dc-weekend-background: #fcfcfc;
 }
 
 .data-calendar-controls {
+  line-height: 2em;
   position: absolute;
   right: 1em;
   text-align: right;
-  top: 1em;
-  width: 40px;
+  top: 0;
+  width: 120px;
   
   button {
     display: none;
   }
 }
 
-.data-calendar-controls-next {
+.data-calendar-controls-prev,
+.data-calendar-controls-next,
+.data-calendar-controls-today {
+  float: left;
+  margin-top: 1em;
+} 
 
+.data-calendar-controls-today {
+  margin: 0.7em 0.5em 0 0.5em;
+}
+
+.data-calendar-controls-next {
   &:after {
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent; 
@@ -100,8 +111,6 @@ $dc-weekend-background: #fcfcfc;
 }
 
 .data-calendar-controls-prev {
-  float: left;
-
   &:before {
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent; 
@@ -115,6 +124,17 @@ $dc-weekend-background: #fcfcfc;
   }
 }
 
+.data-calendar-controls-today {
+  button {
+    background: transparent;
+    border: 0;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 1em;
+    outline: none;
+  }
+}
 
 .date-calendar-day-header {
   text-align: right;
@@ -123,4 +143,8 @@ $dc-weekend-background: #fcfcfc;
 
 .data-calendar-day--outOfMonth {
   opacity: 0.4;
+}
+
+.data-calendar-day--today {
+  background: #eee;
 }

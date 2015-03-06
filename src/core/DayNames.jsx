@@ -1,11 +1,13 @@
 var React = require('react');
 
-var cx = require('../helpers/cx'),
+var classNames = require('../helpers/classNames'),
     dayNameHelper = require('../helpers/dayNames');
 
 var DayNames = React.createClass({
 
   propTypes: {
+    className: React.PropTypes.string,
+
     type: React.PropTypes.string
   },
 
@@ -27,9 +29,9 @@ var DayNames = React.createClass({
       );
     });
 
-    var classes = cx({
+    var classes = classNames({
       'data-calendar-daynames': true
-    });
+    }, this.props.className);
 
     return (
       <div className={classes}>

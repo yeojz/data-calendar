@@ -1,7 +1,7 @@
 var React = require('react'),
     moment = require('moment');
 
-var cx = require('../helpers/cx'),
+var classNames = require('../helpers/classNames'),
     weeksInMonth = require('../helpers/weeksInMonth');
 
 var Day = require('./Day.jsx'),
@@ -26,20 +26,39 @@ var Month = React.createClass({
   },
 
 
+  componentWillMount: function() {
+    this.__setStateFromProps(this.props);
+  },
 
+
+  componentWillReceiveProps: function(nextProps) {
+    this.__setStateFromProps(nextProps);
+  },
 
 
   /*
    * Private Use Only
    * *************************************************** */
 
-  __getDate: function(){
-    var date = this.props.year + '' + this.props.month;
+  __setStateFromProps: function(props){
+    var date = this.__getDate(props);
+    var month = this.__getMonthRange(date);
+
+
+    this.setState({
+      mDate: date,
+      numberOfWeeks: weeksInMonth(date),
+      rangeStart: month.start,
+      rangeEnd: month.end
+    });
+  },
+
+  __getDate: function(props){
+    var date = props.year + '' + props.month;
     return moment(date, 'YYYYMM');
   },
 
-  __getMonthRange: function(){
-    var date = this.__getDate();
+  __getMonthRange: function(date){
 
     return {
       start: date.format('YYYYMMDD'),
@@ -70,14 +89,13 @@ var Month = React.createClass({
   __getDay: function(date){
 
     var entries = this.__getEntries(date);
-    var month = this.__getMonthRange();
 
     return (
       <Day
         key={date}
         date={date}
-        rangeStart={month.start}
-        rangeEnd={month.end}
+        rangeStart={this.state.rangeStart}
+        rangeEnd={this.state.rangeEnd}
         dateShow={true}>
 
         {entries}
@@ -113,14 +131,12 @@ var Month = React.createClass({
    * *************************************************** */
 
   _getWeeks: function(){
-    var date = this.__getDate();
     var weeks = [];
-    var numberOfWeeks = weeksInMonth(date);
 
-    for (var i = 0; i < numberOfWeeks; i++){
+    for (var i = 0; i < this.state.numberOfWeeks; i++){
 
       // Create New Instances
-      var m = this.__getDate(),
+      var m = this.__getDate(this.props),
           start = i * 7;
 
       // Get Start of the week
@@ -143,10 +159,10 @@ var Month = React.createClass({
 
     var weeks = this._getWeeks();
 
-    var classes = cx({
+    var classes = classNames({
       'data-calendar': true,
       'data-calendar--month': true
-    }) + ' ' + this.props.className;
+    }, this.props.className);
 
     return (
       <div className={classes}>

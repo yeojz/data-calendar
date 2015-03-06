@@ -1,13 +1,16 @@
 var React = require('react');
 
-var cx = require('../helpers/cx');
+var classNames = require('../helpers/classNames');
 
 var Entry = React.createClass({
+
   statics: {
     __DataCalendarEntry__: true
   },
 
   propTypes: {
+    className: React.PropTypes.string,
+    
     data: React.PropTypes.object.isRequired,
     entryDataGetter: React.PropTypes.func.isRequired,
     entryRenderer: React.PropTypes.func
@@ -54,9 +57,9 @@ var Entry = React.createClass({
 
   render: function() {
 
-    var classes = cx({
+    var classes = classNames({
       'data-calendar-entry': true
-    });
+    }, this.props.className);
 
     var entry = this._getEntryDetails();
 

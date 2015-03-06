@@ -2,16 +2,16 @@
 /*
  *  Calculates the Number of Weeks in a Month
  *
- *  @mdate Moment Date Object
+ *  @mDate Moment Date Object
  */
-module.exports = function(mdate){
+module.exports = function(mDate){
   var numDaysInWeek = 7;
 
   // First Integer Day (Sun/Mon/...) of the Month
-  var offset = parseInt(mdate.weekday());
+  var offset = parseInt(mDate.weekday());
 
   // Get the last day of the month
-  var lastDay = parseInt(mdate.endOf('month').format('D'));
+  var lastDay = parseInt(mDate.endOf('month').format('D'));
 
   return Math.ceil( (lastDay + offset) / numDaysInWeek);
 };

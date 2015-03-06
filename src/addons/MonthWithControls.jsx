@@ -1,19 +1,20 @@
 var React = require('react'),
     moment = require('moment');
 
-var cx = require('../helpers/cx');
+var classNames = require('../helpers/classNames');
 
 var Month = require('../core/Month.jsx'),
     DayNames = require('../core/DayNames.jsx');
 
 var MonthWithControls = React.createClass({
+
   statics: {
     __DataCalendarMonthAddons__: true
   },
 
   propTypes: {
     className: React.PropTypes.string,
-    
+
     entryDataGetter: React.PropTypes.func,
     entryRenderer: React.PropTypes.func,
     entriesGetter: React.PropTypes.func.isRequired,
@@ -45,7 +46,8 @@ var MonthWithControls = React.createClass({
       dayNameFormat: 'short',
       monthTitleFormat: 'MMMM YYYY',
       btnNext: (<button>Next</button>),
-      btnPrev: (<button>Prev</button>)
+      btnPrev: (<button>Prev</button>),
+      btnToday: (<button>Today</button>)
     };
   },
 
@@ -92,7 +94,14 @@ var MonthWithControls = React.createClass({
     this.__monthShift(+1);
   },
 
+  _currMonth: function(){
+    var today = moment();
 
+    this.setState({
+      year: parseInt(today.format('YYYY')),
+      month: parseInt(today.format('MM'))
+    })
+  },
 
 
   /*
@@ -100,11 +109,6 @@ var MonthWithControls = React.createClass({
    * *************************************************** */
 
   render: function() {
-
-    var classes = cx({
-      'data-calendar-addons': true,
-      'data-calendar-addons--month': true
-    }) + ' ' + this.props.className;
 
     var monthTitle = '';
     var controls = '';
@@ -121,11 +125,17 @@ var MonthWithControls = React.createClass({
       controls = (
         <div className='data-calendar-controls'>
           <div className='data-calendar-controls-prev' onClick={this._prevMonth}>{this.props.btnPrev}</div>
+          <div className='data-calendar-controls-today' onClick={this._currMonth}>{this.props.btnToday}</div>
           <div className='data-calendar-controls-next' onClick={this._nextMonth}>{this.props.btnNext}</div>
         </div>
       );
     }
 
+    var classes = classNames({
+      'data-calendar-addons': true,
+      'data-calendar-addons--month': true
+    }, this.props.className);
+    
     return (
       <div className={classes}>
 

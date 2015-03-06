@@ -1,17 +1,18 @@
 var React = require('react'),
     moment = require('moment');
 
-var cx = require('../helpers/cx'),
-    invariant = require('../helpers/invariant');
-
-var ReactChildren = React.Children;
+var classNames = require('../helpers/classNames'),
+    children = require('../helpers/children');
 
 var Day = React.createClass({
+
   statics: {
     __DataCalendarDay__: true
   },
 
   propTypes: {
+    className: React.PropTypes.string,
+
     date: React.PropTypes.string,
     dateShow: React.PropTypes.bool,
     dateFormat: React.PropTypes.string
@@ -19,6 +20,7 @@ var Day = React.createClass({
 
   getDefaultProps: function() {
     return {
+      today: moment().format('YYYYMMDD'),
       dateShow: false,
       dateFormat: 'D'
     };
@@ -39,23 +41,9 @@ var Day = React.createClass({
 
   _getEntries: function(){
 
-    var children = [];
-
-    ReactChildren.forEach(this.props.children, function(child) {
-
-      if (child == null) {
-        return;
-      }
-
-      invariant(
-        child.type.__DataCalendarEntry__,
-        'child type should be an <Entry />'
-      );
-
-      children.push(child);
-    });
-
-    return children;
+    return children(this.props.children,
+                    '__DataCalendarEntry__',
+                    '<Entry />');
   },
 
 
@@ -86,10 +74,13 @@ var Day = React.createClass({
       }
     }
 
-    var classes = cx({
+    var today = (this.state.date.format('YYYYMMDD') === this.props.today);
+
+    var classes = classNames({
       'data-calendar-day': true,
+      'data-calendar-day--today': today,
       'data-calendar-day--outOfMonth': outOfMonth
-    });
+    }, this.props.className);
 
     return (
       <div className={classes}>

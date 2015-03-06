@@ -1,12 +1,9 @@
 var React = require('react');
 
-var cx = require('../helpers/cx'),
-    invariant = require('../helpers/invariant');
-
-var ReactChildren = React.Children;
+var classNames = require('../helpers/classNames'),
+    children = require('../helpers/children');
 
 var Week = React.createClass({
-
 
 
 
@@ -16,23 +13,9 @@ var Week = React.createClass({
 
   _getDays: function(){
 
-    var children = [];
-
-    ReactChildren.forEach(this.props.children, function(child) {
-
-      if (child == null) {
-        return;
-      }
-
-      invariant(
-        child.type.__DataCalendarDay__,
-        'child type should be <Day />'
-      );
-
-      children.push(child);
-    });
-
-    return children;
+    return children(this.props.children,
+                    '__DataCalendarDay__',
+                    '<Day />');
   },
 
 
@@ -46,9 +29,9 @@ var Week = React.createClass({
 
     var days = this._getDays();
 
-    var classes = cx({
+    var classes = classNames({
       'data-calendar-week': true
-    });
+    }, this.props.className);
 
     return (
       <div className={classes}>
