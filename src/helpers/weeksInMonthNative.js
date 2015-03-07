@@ -3,16 +3,14 @@
  *
  * @param integer   year (eg: 2015)
  * @param integer   month (1 -  12)
- * @param integer   number of days in a week. (Default: 7)
  * @return integer  number of weeks in the month
  */
-module.exports = function(year, month, numDaysInWeek){
+module.exports = function(year, month){
 
-  numDaysInWeek = numDaysInWeek || 7;
+  var numDaysInWeek = 7;
 
   if (typeof year !== 'number' ||
-      typeof month !== 'number' ||
-      typeof numDaysInWeek !== 'number'){
+      typeof month !== 'number'){
     throw new Error('[weeksInMonthNative] Arguments supplied must be a number');
   }
 
