@@ -9,7 +9,7 @@ module.exports = function(mDate){
   var numDaysInWeek = 7;
 
   // First Integer Day (Sun/Mon/...) of the Month
-  var offset = parseInt(mDate.weekday());
+  var offset = parseInt(mDate.startOf('month').weekday());
 
   // Get the last day of the month
   var lastDay = parseInt(mDate.endOf('month').format('D'));
