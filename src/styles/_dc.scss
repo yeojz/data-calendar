@@ -1,0 +1,32 @@
+.dc {
+  // Base // --------------------------------------------------
+
+  .data-calendar,
+  .data-calendar-addons,
+  .data-calendar-week,
+  .data-calendar-day,
+  .data-calendar-daysofweek,
+  .data-calendar-daysofweek-day {
+    box-sizing: border-box;
+  }
+
+  .data-calendar,
+  .data-calendar-addons {
+    position: relative;
+    box-shadow: 3px 6px 10px rgba(0, 0, 0, 0.1);
+  }
+
+
+  // Rows // --------------------------------------------------
+
+  .data-calendar-week,
+  .data-calendar-daysofweek {
+    align-items: stretch;
+    clear: both;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+  }
+
+
+}

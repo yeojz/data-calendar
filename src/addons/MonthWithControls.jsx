@@ -11,13 +11,6 @@ var monthProps = require('../propTypes/monthProps'),
 var Month = require('../core/Month.jsx'),
     DaysOfWeek = require('../core/DaysOfWeek.jsx');
 
-
-
-
-
-
-
-
 var MonthWithControls = React.createClass({
 
   statics: {
@@ -30,10 +23,11 @@ var MonthWithControls = React.createClass({
 
   getDefaultProps: function() {
     return {
-      showControls: true,
-      showMonthTitle: true,
+      controls: true,
+      monthTitle: true,
+
       dayNameFormat: 'short',
-      monthTitleFormat: 'MMMM YYYY',
+
       btnNext: (<button>Next</button>),
       btnPrev: (<button>Prev</button>),
       btnToday: (<button>Today</button>)
@@ -71,6 +65,7 @@ var MonthWithControls = React.createClass({
 
 
 
+
   /*
    * Render Helpers
    * *************************************************** */
@@ -94,37 +89,87 @@ var MonthWithControls = React.createClass({
 
 
   /*
+   * Gets the title to display
+   */
+  _getMonthTitle: function(){
+
+    var contents = '';
+
+    switch (typeof this.props.monthTitle){
+      case 'boolean':
+        contents = (this.props.monthTitle) ? this.__getDate().format('MMMM YYYY') : '';
+        break;
+      case 'string':
+        contents = this.__getDate().format(this.props.monthTitle);
+        break;
+      case 'function':
+        contents = this.props.monthTitle(this.__getDate());
+        break;
+      // no default
+    }
+
+    if (contents !== ''){
+      return (
+        <div className='data-calendar-title'>
+          {contents}
+        </div>
+      );
+    }
+
+    return '';
+  },
+
+
+  /*
+   * Checks for a renderer and returns the calendar controls
+   */
+  _getControls: function(){
+
+    var controls = this.props.controls;
+
+    if (typeof controls === 'function'){
+      return controls(this._prevMonth, this._nextMonth, this._currMonth);
+    }
+
+    if (typeof controls === 'boolean' && controls){
+      return (
+        <div className='data-calendar-controls'>
+          <div className='data-calendar-controls-prev'
+                onClick={this._prevMonth}>
+            {this.props.btnPrev}
+          </div>
+          <div className='data-calendar-controls-today'
+                onClick={this._currMonth}>
+            {this.props.btnToday}
+          </div>
+          <div className='data-calendar-controls-next'
+                onClick={this._nextMonth}>
+            {this.props.btnNext}
+          </div>
+        </div>
+      );
+    }
+  },
+
+
+
+
+  /*
    * Render
    * *************************************************** */
 
   render: function() {
 
-    var monthTitle = '';
-    var controls = '';
-
-    if (this.props.showMonthTitle){
-      monthTitle = (
-        <div className='data-calendar-title'>
-          {this.__getDate().format(this.props.monthTitleFormat)}
-        </div>
-      );
-    }
-
-    if (this.props.showControls){
-      controls = (
-        <div className='data-calendar-controls'>
-          <div className='data-calendar-controls-prev' onClick={this._prevMonth}>{this.props.btnPrev}</div>
-          <div className='data-calendar-controls-today' onClick={this._currMonth}>{this.props.btnToday}</div>
-          <div className='data-calendar-controls-next' onClick={this._nextMonth}>{this.props.btnNext}</div>
-        </div>
-      );
-    }
+    var monthTitle = this._getMonthTitle();
+    var controls = this._getControls();
 
     var classes = classNames({
       'data-calendar-addons': true,
       'data-calendar-addons--month': true
     }, this.props.className);
 
+    // Removes all extra props for this module
+    // Remainder will be for <Month />
     var props = objectFilter(this.props, this._propTypeKeys);
 
     return (

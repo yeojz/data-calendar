@@ -1,0 +1,26 @@
+@mixin m-triangle($size, $color, $direction){
+ 
+  @if $direction == left or $direction == right {
+    border-top: $size solid transparent;
+    border-bottom: $size solid transparent; 
+  }
+
+  @if $direction == up or $direction == down {
+    border-left: $size solid transparent;
+    border-right: $size solid transparent;
+  }
+
+  @if $direction == up {
+    $direction: bottom;
+  }
+
+  @if $direction == down {
+    $direction: top;
+  }
+
+  border-#{$direction}: $size solid $color;
+
+  display: inline-block;
+  height: 0;
+  width: 0;
+}

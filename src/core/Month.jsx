@@ -19,6 +19,12 @@ var Month = React.createClass({
   propTypes: moduleProps,
 
 
+  getDefaultProps: function() {
+    return {
+      disable: [] 
+    };
+  },
+
   componentWillMount: function() {
     this.__setStateFromProps(this.props);
   },
@@ -27,6 +33,8 @@ var Month = React.createClass({
   componentWillReceiveProps: function(nextProps) {
     this.__setStateFromProps(nextProps);
   },
+
+
 
 
   /*
@@ -46,38 +54,59 @@ var Month = React.createClass({
     });
   },
 
+
   __getDate: function(props){
     var date = props.year + '' + props.month;
     return moment(date, 'YYYYMM');
   },
 
-  __getMonthRange: function(date){
 
+  __getMonthRange: function(date){
     return {
       start: date.format('YYYYMMDD'),
       end: date.endOf('month').format('YYYYMMDD')
     };
   },
 
+
   __getEntries: function(date){
+
     var entries = [],
-        entryList = this.props.entriesGetter(date);
+        entryList;
 
-
-    if (typeof entryList !== 'undefined'){
-      entries = entryList.map(function(entry, i){
-        return (
-          <Entry
-              data={entry}
-              entryDataGetter={this.props.entryDataGetter}
-              entryRenderer={this.props.entryRenderer}
-              key={i} />
-        );
-      }.bind(this));
+    // Check for disable flag
+    if (this.props.disable.indexOf('entry') >= 0){
+      return entries;
     }
+
+    // Check if its a valid function
+    if (typeof this.props.entriesGetter !== 'function'){
+      return entries;
+    }
+
+    // Get List of entries
+    entryList = this.props.entriesGetter(date);
+
+    // If not an Array, Exit.
+    if (!(Array.isArray(entryList))){
+      return entries;
+    }
+
+    // Map each entry to the Entry Object
+    entries = entryList.map(function(entry, i){
+      return (
+        <Entry
+            data={entry}
+            entryDataGetter={this.props.entryDataGetter}
+            entryRenderer={this.props.entryRenderer}
+            key={i} />
+      );
+    }.bind(this));
+  
 
     return entries;
   },
+
 
   __getDay: function(date){
 
@@ -85,17 +114,18 @@ var Month = React.createClass({
 
     return (
       <Day
-        key={date}
         date={date}
+        key={date}
         rangeStart={this.state.rangeStart}
         rangeEnd={this.state.rangeEnd}
-        dateShow={true}>
+        showDate={true}>
 
         {entries}
       </Day>
     );
 
   },
+
 
   __getWeek: function(startDate, idx){
 
@@ -104,6 +134,7 @@ var Month = React.createClass({
     // Offset the start
     startDate.add(-1, 'day');
 
+    // Loop through 1 Week
     for (var i = 0; i < 7; i++){
       var date = startDate.add(1, 'day').format('YYYYMMDD');
       week.push(this.__getDay(date));

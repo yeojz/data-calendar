@@ -17,7 +17,7 @@ var Day = React.createClass({
   getDefaultProps: function() {
     return {
       today: moment().format('YYYYMMDD'),
-      dateShow: false,
+      showDate: false,
       dateFormat: 'D'
     };
   },
@@ -43,6 +43,23 @@ var Day = React.createClass({
   },
 
 
+  // Checks if date is out of the current stated range
+  _isOutOfMonth: function(){
+
+    // if range not defined
+    if (!this.props.rangeStart || !this.props.rangeEnd){
+      return false;
+    }
+
+    // Check range
+    if (this.props.date < this.props.rangeStart || this.props.date > this.props.rangeEnd){
+      return true;
+    }
+
+    return false;
+  },
+
+
 
 
   /*
@@ -54,20 +71,12 @@ var Day = React.createClass({
     var entries = this._getEntries(),
         header = '';
 
-    if (this.props.dateShow) {
+    if (this.props.showDate) {
       header = (
-        <div className='date-calendar-day-header'>
+        <div className='data-calendar-day-header'>
           {this.state.date.format(this.props.dateFormat)}
         </div>
       );
-    }
-
-    var outOfMonth = false;
-
-    if (this.props.rangeStart && this.props.rangeEnd){
-      if (this.props.date < this.props.rangeStart || this.props.date > this.props.rangeEnd){
-        outOfMonth = true;
-      }
     }
 
     var today = (this.state.date.format('YYYYMMDD') === this.props.today);
@@ -75,7 +84,7 @@ var Day = React.createClass({
     var classes = classNames({
       'data-calendar-day': true,
       'data-calendar-day--today': today,
-      'data-calendar-day--outOfMonth': outOfMonth
+      'data-calendar-day--outOfMonth': this._isOutOfMonth()
     }, this.props.className);
 
     return (

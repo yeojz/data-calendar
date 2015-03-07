@@ -17,4 +17,6 @@ You can find a simple month calendar implementation in the `example` folder.
 
 ## Screenshot
 
-![month calendar](https://github.com/yeojz/data-calendar/raw/master/example/screenshot/calendar-month.png)
+![mini calendar](https://github.com/yeojz/data-calendar/raw/master/example/screenshot/mini-calendar.png)
+
+![full calendar](https://github.com/yeojz/data-calendar/raw/master/example/screenshot/full-calendar.png)

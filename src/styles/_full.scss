@@ -1,0 +1,129 @@
+.dc--full {
+  
+  $dc-day-width: 100px;
+  $dc-day-height: 100px;
+  $dc-width: 7 * $dc-day-width;
+
+  $dc-day-border-color: #eee;
+
+  $dc-title-color: #fff;
+  $dc-title-background: #1565c0;
+
+  $dc-weekend-background: #fcfcfc;
+
+
+  // Base // --------------------------------------------------  
+  .data-calendar,
+  .data-calendar-addons {
+    width: $dc-width;
+  }
+
+
+  // Day // --------------------------------------------------
+
+  .data-calendar-day,
+  .data-calendar-daysofweek-day {
+    display: inline-block;
+    flex: 0 0 auto;
+    height: $dc-day-height;
+    position: relative;
+    width: $dc-day-width;
+
+    border: 1px $dc-day-border-color solid;
+  }
+
+  .data-calendar-day {
+    &:first-child,
+    &:last-child {
+      background: $dc-weekend-background;
+    }
+  }
+
+  .data-calendar-day--outOfMonth {
+    opacity: 0.4;
+  }
+
+  .data-calendar-day--today {
+    background: #eee;
+  }
+
+  .date-calendar-day-header {
+    text-align: right;
+    margin: 0.3em;
+  }
+  
+  .data-calendar-daysofweek-day {
+    border-width: 0 0 1px 0;
+    height: 2em;
+    padding: 0.5em;
+    text-align: right;
+  }
+
+
+  // Addons:Misc // --------------------------------------------------
+
+  .data-calendar-title {
+    color: $dc-title-color;
+    text-align: left;
+    background-color: $dc-title-background;
+    padding: 1em;
+  }
+
+
+  // Addons:Controls // --------------------------------------------------
+
+  .data-calendar-controls {
+    line-height: 2em;
+    position: absolute;
+    right: 1em;
+    text-align: right;
+    top: 0;
+    width: 120px;
+    
+    button {
+      display: none;
+    }
+  }
+
+  .data-calendar-controls-prev,
+  .data-calendar-controls-next,
+  .data-calendar-controls-today {
+    float: left;
+    margin-top: 1em;
+  } 
+
+  .data-calendar-controls-today {
+    margin: 0.7em 0.5em 0 0.5em;
+  }
+
+  .data-calendar-controls-next {
+    &:after {
+      @include m-triangle(10px, #fff, left);
+      content: '';
+      cursor: pointer;
+      margin-left: 5px;
+    }
+  }
+
+  .data-calendar-controls-prev {
+    &:before {
+      @include m-triangle(10px, #fff, right);
+      content: '';
+      cursor: pointer;
+      margin-left: 5px;
+    }
+  }
+
+  .data-calendar-controls-today {
+    button {
+      background: transparent;
+      border: 0;
+      color: #fff;
+      cursor: pointer;
+      display: inline-block;
+      font-size: 1em;
+      outline: none;
+    }
+  }
+
+} // namespace

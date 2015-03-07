@@ -1,7 +1,7 @@
-var React = require('react');
+var React = require('react'),
+    moment = require('moment');
 
-var classNames = require('../helpers/classNames'),
-    dayNameHelper = require('../helpers/dayNames');
+var classNames = require('../helpers/classNames');
 
 var moduleProps = require('../propTypes/daysOfWeekProps');
 
@@ -15,9 +15,40 @@ var DaysOfWeek = React.createClass({
     };
   },
 
+
+
+
+  /*
+   * Render Helper
+   * *************************************************** */
+
+  /*
+   * @param string    predefined set of name types in moment.js
+   * @returns array   the list of day names of a week
+   */
+  _getNames: function(type){
+    type = type || 'long';
+
+    switch (type){
+      case 'short':
+        return moment.weekdaysShort();
+      case 'min':
+        return moment.weekdaysMin();
+      case 'long':
+        return moment.weekdays();
+    }
+  },
+
+
+
+
+  /*
+   * Render
+   * *************************************************** */
+
   render: function() {
 
-    var names = dayNameHelper(this.props.type);
+    var names = this._getNames(this.props.type);
 
     names = names.map(function(name, i){
       return (

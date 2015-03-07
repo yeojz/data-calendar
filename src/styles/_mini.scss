@@ -1,0 +1,140 @@
+
+.dc--mini {
+
+  
+  $dc-day-width: 2rem;
+  $dc-day-height: 2rem;
+  $dc-width: 7 * $dc-day-width;
+
+  $dc-day-border-color: #eee;
+
+  $dc-title-color: #fff;
+  $dc-title-background: #1565c0;
+
+  $dc-weekend-background: #f9f9f9;
+
+  $dc-daysofweek-color: #888;
+
+
+  // Base // --------------------------------------------------  
+  .data-calendar,
+  .data-calendar-addons {
+    width: $dc-width;
+  }
+
+
+  // Row // --------------------------------------------------
+
+  .data-calendar-daysofweek {
+    &:before {
+      @include m-triangle(6px, #fff, up);
+      content: '';
+      display: block;
+      left: calc(50% - 6px);      
+      margin: 0 auto;
+      position: absolute;
+      margin-top: -6px;
+    } 
+  }
+
+
+  // Day // --------------------------------------------------
+
+  .data-calendar-day,
+  .data-calendar-daysofweek-day {
+    display: inline-block;
+    flex: 0 0 auto;
+    height: $dc-day-height;
+    position: relative;
+    text-align: center;
+    width: $dc-day-width;
+  }
+  
+  .data-calendar-day {
+    &:first-child,
+    &:last-child {
+      background: $dc-weekend-background;
+    }
+  }
+
+  .data-calendar-daysofweek-day {
+    color: $dc-daysofweek-color;
+    font-size: 0.6em;
+    height: auto;
+    padding-top: 0.5em;
+    text-transform: uppercase;
+  
+    &:first-letter {
+      font-size: 1.2em;
+    }
+  }
+
+  .data-calendar-day--outOfMonth {
+    opacity: 0.4;
+  }
+
+  .data-calendar-day--today {
+    background: #eee;
+  }  
+
+  .data-calendar-day-header {
+    display: table-cell;
+    height: $dc-day-height;
+    position: relative;
+    text-align: center;
+    vertical-align: middle;
+    width: $dc-day-width;
+  }
+
+
+
+  // Addons:Misc // --------------------------------------------------
+
+  .data-calendar-title {
+    color: $dc-title-color;
+    text-align: center;
+    background-color: $dc-title-background;
+    padding: 1em;   
+  }
+
+   // Addons:Controls // --------------------------------------------------
+
+  .data-calendar-controls {
+    line-height: 1em;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    top: 1em;
+    width: 100%;
+
+    button {
+      display: none;
+    }
+  }
+
+  .data-calendar-controls-today {
+    display: none;
+  } 
+
+ .data-calendar-controls-next {
+    float: right;
+
+    &:after {
+      @include m-triangle(8px, #fff, left);
+      content: '';
+      cursor: pointer;
+      margin-right: 10px;
+    }
+  }
+
+ .data-calendar-controls-prev {
+    float: left;
+
+    &:before {
+      @include m-triangle(8px, #fff, right);
+      content: '';
+      cursor: pointer;
+      margin-left: 10px;
+    }
+  }
+}
