@@ -21,7 +21,7 @@ var Month = React.createClass({
 
   getDefaultProps: function() {
     return {
-      disable: [] 
+      disable: []
     };
   },
 
@@ -44,7 +44,6 @@ var Month = React.createClass({
   __setStateFromProps: function(props){
     var date = this.__getDate(props);
     var month = this.__getMonthRange(date);
-
 
     this.setState({
       mDate: date,
@@ -102,7 +101,7 @@ var Month = React.createClass({
             key={i} />
       );
     }.bind(this));
-  
+
 
     return entries;
   },
