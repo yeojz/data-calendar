@@ -23,20 +23,6 @@
   }
 
 
-  // Row // --------------------------------------------------
-
-  .data-calendar-daysofweek {
-    &:before {
-      @include m-triangle(6px, #fff, up);
-      content: '';
-      display: block;
-      left: calc(50% - 6px);      
-      margin: 0 auto;
-      position: absolute;
-      margin-top: -6px;
-    } 
-  }
-
 
   // Day // --------------------------------------------------
 
@@ -49,7 +35,7 @@
     text-align: center;
     width: $dc-day-width;
   }
-  
+
   .data-calendar-day {
     &:first-child,
     &:last-child {
