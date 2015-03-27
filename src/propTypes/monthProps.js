@@ -1,6 +1,6 @@
 var React = require('react');
 
-module.exports = {
+export default {
 
   // Extra classNames to place in module root element
   className: React.PropTypes.string,

@@ -9,7 +9,7 @@
  * @returns object      the resultant object
  */
 
-module.exports = function(obj, keysToRemove){
+export default function(obj, keysToRemove){
 
   var removeKeys = keysToRemove;
 
@@ -26,7 +26,7 @@ module.exports = function(obj, keysToRemove){
   var keys = Object.keys(obj);
   var newObj = {};
 
-  keys.forEach(function(key){
+  keys.forEach((key) => {
 
     // Check for keys in remove array
     if (removeKeys.indexOf(key) < 0){
@@ -35,4 +35,4 @@ module.exports = function(obj, keysToRemove){
   });
 
   return newObj;
-};
+}

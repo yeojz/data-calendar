@@ -1,27 +1,23 @@
-var React = require('react'),
-    moment = require('moment');
+import React from 'react';
+import moment from 'moment';
 
-var classNames = require('../helpers/classNames'),
-    mergePropTypes = require('../helpers/mergePropTypes'),
-    objectFilter = require('../helpers/objectFilter');
+import {classNames, mergePropTypes, objectFilter} from '../helpers';
+import {monthProps, monthWithControlsProps} from '../propTypes';
+import {DaysOfWeek, Month} from '../core';
 
-var monthProps = require('../propTypes/monthProps'),
-    moduleProps = require('../propTypes/monthWithControlsProps');
 
-var Month = require('../core/Month.jsx'),
-    DaysOfWeek = require('../core/DaysOfWeek.jsx');
 
-var MonthWithControls = React.createClass({
+const MonthWithControls = React.createClass({
 
   statics: {
     __DataCalendarMonthAddons__: true
   },
 
-  _propTypeKeys: Object.keys(moduleProps),
+  _propTypeKeys: Object.keys(monthWithControlsProps),
 
-  propTypes: mergePropTypes(monthProps, moduleProps),
+  propTypes: mergePropTypes(monthProps, monthWithControlsProps),
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       controls: true,
       monthTitle: true,
@@ -34,7 +30,7 @@ var MonthWithControls = React.createClass({
     };
   },
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       year: this.props.year,
       month: this.props.month
@@ -47,12 +43,12 @@ var MonthWithControls = React.createClass({
   /*
    * Private Use Only
    * *************************************************** */
-  __getDate: function(){
+  __getDate(){
     var date = this.state.year + '-' + this.state.month;
     return moment(date, 'YYYYMM');
   },
 
-  __monthShift: function(value){
+  __monthShift(value){
     var date = this.__getDate();
 
     date.add(value, 'month');
@@ -70,15 +66,15 @@ var MonthWithControls = React.createClass({
    * Render Helpers
    * *************************************************** */
 
-  _prevMonth: function(){
+  _prevMonth(){
     this.__monthShift(-1);
   },
 
-  _nextMonth: function(){
+  _nextMonth(){
     this.__monthShift(+1);
   },
 
-  _currMonth: function(){
+  _currMonth(){
     var today = moment();
 
     this.setState({
@@ -91,7 +87,7 @@ var MonthWithControls = React.createClass({
   /*
    * Gets the title to display
    */
-  _getMonthTitle: function(){
+  _getMonthTitle(){
 
     var contents = '';
 
@@ -110,7 +106,7 @@ var MonthWithControls = React.createClass({
 
     if (contents !== ''){
       return (
-        <div className='data-calendar-title'>
+        <div className='dc-addons-title'>
           {contents}
         </div>
       );
@@ -123,7 +119,7 @@ var MonthWithControls = React.createClass({
   /*
    * Checks for a renderer and returns the calendar controls
    */
-  _getControls: function(){
+  _getControls(){
 
     var controls = this.props.controls;
 
@@ -133,16 +129,16 @@ var MonthWithControls = React.createClass({
 
     if (typeof controls === 'boolean' && controls){
       return (
-        <div className='data-calendar-controls'>
-          <div className='data-calendar-controls-prev'
+        <div className='dc-addons-controls'>
+          <div className='dc-addons-controls-prev'
                 onClick={this._prevMonth}>
             {this.props.btnPrev}
           </div>
-          <div className='data-calendar-controls-today'
+          <div className='dc-addons-controls-today'
                 onClick={this._currMonth}>
             {this.props.btnToday}
           </div>
-          <div className='data-calendar-controls-next'
+          <div className='dc-addons-controls-next'
                 onClick={this._nextMonth}>
             {this.props.btnNext}
           </div>
@@ -158,14 +154,14 @@ var MonthWithControls = React.createClass({
    * Render
    * *************************************************** */
 
-  render: function() {
+  render() {
 
     var monthTitle = this._getMonthTitle();
     var controls = this._getControls();
 
     var classes = classNames({
-      'data-calendar-addons': true,
-      'data-calendar-addons--month': true
+      'dc-addons': true,
+      'dc-month--addons': true
     }, this.props.className);
 
     // Removes all extra props for this module
@@ -190,4 +186,4 @@ var MonthWithControls = React.createClass({
   }
 });
 
-module.exports = MonthWithControls;
+export default MonthWithControls;

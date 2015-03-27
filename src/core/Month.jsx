@@ -1,16 +1,15 @@
-var React = require('react'),
-    moment = require('moment');
+import React from 'react';
+import moment from 'moment';
 
-var classNames = require('../helpers/classNames'),
-    weeksInMonth = require('../helpers/weeksInMonth');
-
-var moduleProps = require('../propTypes/monthProps');
+import {classNames, weeksInMonth} from '../helpers';
+import {moduleProps} from '../propTypes';
 
 var Day = require('./Day.jsx'),
     Entry = require('./Entry.jsx'),
     Week = require('./Week.jsx');
 
-var Month = React.createClass({
+
+const Month = React.createClass({
 
   statics: {
     __DataCalendarMonth__: true
@@ -19,18 +18,18 @@ var Month = React.createClass({
   propTypes: moduleProps,
 
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       disable: []
     };
   },
 
-  componentWillMount: function() {
+  componentWillMount() {
     this.__setStateFromProps(this.props);
   },
 
 
-  componentWillReceiveProps: function(nextProps) {
+  componentWillReceiveProps(nextProps) {
     this.__setStateFromProps(nextProps);
   },
 
@@ -41,7 +40,7 @@ var Month = React.createClass({
    * Private Use Only
    * *************************************************** */
 
-  __setStateFromProps: function(props){
+  __setStateFromProps(props){
     var date = this.__getDate(props);
     var month = this.__getMonthRange(date);
 
@@ -54,13 +53,13 @@ var Month = React.createClass({
   },
 
 
-  __getDate: function(props){
+  __getDate(props){
     var date = props.year + '' + props.month;
     return moment(date, 'YYYYMM');
   },
 
 
-  __getMonthRange: function(date){
+  __getMonthRange(date){
     return {
       start: date.format('YYYYMMDD'),
       end: date.endOf('month').format('YYYYMMDD')
@@ -68,7 +67,7 @@ var Month = React.createClass({
   },
 
 
-  __getEntries: function(date){
+  __getEntries(date){
 
     var entries = [],
         entryList;
@@ -92,7 +91,7 @@ var Month = React.createClass({
     }
 
     // Map each entry to the Entry Object
-    entries = entryList.map(function(entry, i){
+    entries = entryList.map((entry, i) => {
       return (
         <Entry
             data={entry}
@@ -100,14 +99,14 @@ var Month = React.createClass({
             entryRenderer={this.props.entryRenderer}
             key={i} />
       );
-    }.bind(this));
+    });
 
 
     return entries;
   },
 
 
-  __getDay: function(date){
+  __getDay(date){
 
     var entries = this.__getEntries(date);
 
@@ -126,7 +125,7 @@ var Month = React.createClass({
   },
 
 
-  __getWeek: function(startDate, idx){
+  __getWeek(startDate, idx){
 
     var week = [];
 
@@ -153,7 +152,7 @@ var Month = React.createClass({
    * Render Helpers
    * *************************************************** */
 
-  _getWeeks: function(){
+  _getWeeks(){
     var weeks = [];
 
     for (var i = 0; i < this.state.numberOfWeeks; i++){
@@ -178,13 +177,12 @@ var Month = React.createClass({
    * Render
    * *************************************************** */
 
-  render: function() {
+  render() {
 
     var weeks = this._getWeeks();
 
     var classes = classNames({
-      'data-calendar': true,
-      'data-calendar--month': true
+      'dc-month': true
     }, this.props.className);
 
     return (
@@ -195,4 +193,4 @@ var Month = React.createClass({
   }
 });
 
-module.exports = Month;
+export default Month;

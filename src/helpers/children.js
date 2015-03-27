@@ -11,15 +11,14 @@
  * @returns array resultant children nodes
  */
 
-var React = require('react');
-var invariant = require('./invariant');
-var ReactChildren = React.Children;
+import {Children} from 'react';
+import invariant from './invariant';
 
-module.exports = function(childNodes, name, type){
+export default function(childNodes, name, type){
 
   var children = [];
 
-  ReactChildren.forEach(childNodes, function(child) {
+  Children.forEach(childNodes, function(child) {
 
     if (child === null) {
       return;
@@ -34,4 +33,4 @@ module.exports = function(childNodes, name, type){
   });
 
   return children;
-};
+}

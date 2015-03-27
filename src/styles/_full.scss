@@ -1,7 +1,7 @@
 .dc--full {
   
-  $dc-day-width: 100px;
-  $dc-day-height: 100px;
+  $dc-day-width: 140px;
+  $dc-day-height: 120px;
   $dc-width: 7 * $dc-day-width;
 
   $dc-day-border-color: #eee;
@@ -13,16 +13,16 @@
 
 
   // Base // --------------------------------------------------  
-  .data-calendar,
-  .data-calendar-addons {
+  .dc-month,
+  .dc-month--addons {
     width: $dc-width;
   }
 
 
   // Day // --------------------------------------------------
 
-  .data-calendar-day,
-  .data-calendar-daysofweek-day {
+  .dc-day,
+  .dc-daysofweek-day {
     display: inline-block;
     flex: 0 0 auto;
     height: $dc-day-height;
@@ -32,27 +32,27 @@
     border: 1px $dc-day-border-color solid;
   }
 
-  .data-calendar-day {
+  .dc-day {
     &:first-child,
     &:last-child {
       background: $dc-weekend-background;
     }
   }
 
-  .data-calendar-day--outOfMonth {
+  .dc-day--outOfMonth {
     opacity: 0.4;
   }
 
-  .data-calendar-day--today {
+  .dc-day--today {
     background: #eee;
   }
 
-  .date-calendar-day-header {
+  .dc-day-header {
     text-align: right;
     margin: 0.3em;
   }
   
-  .data-calendar-daysofweek-day {
+  .dc-daysofweek-day {
     border-width: 0 0 1px 0;
     height: 2em;
     padding: 0.5em;
@@ -62,7 +62,7 @@
 
   // Addons:Misc // --------------------------------------------------
 
-  .data-calendar-title {
+  .dc-addons-title {
     color: $dc-title-color;
     text-align: left;
     background-color: $dc-title-background;
@@ -72,7 +72,7 @@
 
   // Addons:Controls // --------------------------------------------------
 
-  .data-calendar-controls {
+  .dc-addons-controls {
     line-height: 2em;
     position: absolute;
     right: 1em;
@@ -85,18 +85,18 @@
     }
   }
 
-  .data-calendar-controls-prev,
-  .data-calendar-controls-next,
-  .data-calendar-controls-today {
+  .dc-addons-controls-prev,
+  .dc-addons-controls-next,
+  .dc-addons-controls-today {
     float: left;
     margin-top: 1em;
   } 
 
-  .data-calendar-controls-today {
+  .dc-addons-controls-today {
     margin: 0.7em 0.5em 0 0.5em;
   }
 
-  .data-calendar-controls-next {
+  .dc-addons-controls-next {
     &:after {
       @include m-triangle(10px, #fff, left);
       content: '';
@@ -105,7 +105,7 @@
     }
   }
 
-  .data-calendar-controls-prev {
+  .dc-addons-controls-prev {
     &:before {
       @include m-triangle(10px, #fff, right);
       content: '';
@@ -114,7 +114,7 @@
     }
   }
 
-  .data-calendar-controls-today {
+  .dc-addons-controls-today {
     button {
       background: transparent;
       border: 0;

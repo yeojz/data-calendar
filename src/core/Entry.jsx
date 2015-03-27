@@ -1,10 +1,9 @@
-var React = require('react');
+import React from 'react';
 
-var classNames = require('../helpers/classNames');
+import {classNames} from '../helpers';
+import {moduleProps} from '../propTypes';
 
-var moduleProps = require('../propTypes/entryProps');
-
-var Entry = React.createClass({
+const Entry = React.createClass({
 
   statics: {
     __DataCalendarEntry__: true
@@ -19,8 +18,8 @@ var Entry = React.createClass({
    * Private Use Only
    * *************************************************** */
 
-  __entryDataGetterDefault: function(){
-    return (<div className='data-calendar-entry-placeholder' />);
+  __entryDataGetterDefault() {
+    return (<div className='dc-entry-placeholder' />);
   },
 
 
@@ -32,7 +31,7 @@ var Entry = React.createClass({
 
    // Note:
    // 3 possible return Functions
-  _getEntryDetails: function(){
+  _getEntryDetails() {
     if (typeof this.props.entryRenderer === 'function'){
       return this.props.entryRenderer(this.props.data);
     }
@@ -51,10 +50,10 @@ var Entry = React.createClass({
    * Render
    * *************************************************** */
 
-  render: function() {
+  render() {
 
     var classes = classNames({
-      'data-calendar-entry': true
+      'dc-entry': true
     }, this.props.className);
 
     var entry = this._getEntryDetails();
@@ -67,4 +66,4 @@ var Entry = React.createClass({
   }
 });
 
-module.exports = Entry;
+export default Entry;

@@ -1,12 +1,10 @@
-var React = require('react'),
-    moment = require('moment');
+import React from 'react';
+import moment from 'moment';
 
-var children = require('../helpers/children'),
-    classNames = require('../helpers/classNames');
+import {children, classNames} from '../helpers';
+import {moduleProps} from '../propTypes';
 
-var moduleProps = require('../propTypes/dayProps');
-
-var Day = React.createClass({
+const Day = React.createClass({
 
   statics: {
     __DataCalendarDay__: true
@@ -14,7 +12,7 @@ var Day = React.createClass({
 
   propTypes: moduleProps,
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       today: moment().format('YYYYMMDD'),
       showDate: false,
@@ -22,7 +20,7 @@ var Day = React.createClass({
     };
   },
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       date: moment(this.props.date, 'YYYYMMDD')
     };
@@ -35,7 +33,7 @@ var Day = React.createClass({
    * Render Helpers
    * *************************************************** */
 
-  _getEntries: function(){
+  _getEntries() {
 
     return children(this.props.children,
                     '__DataCalendarEntry__',
@@ -44,7 +42,7 @@ var Day = React.createClass({
 
 
   // Checks if date is out of the current stated range
-  _isOutOfMonth: function(){
+  _isOutOfMonth() {
 
     // if range not defined
     if (!this.props.rangeStart || !this.props.rangeEnd){
@@ -66,14 +64,14 @@ var Day = React.createClass({
    * Render
    * *************************************************** */
 
-  render: function() {
+  render() {
 
     var entries = this._getEntries(),
         header = '';
 
     if (this.props.showDate) {
       header = (
-        <div className='data-calendar-day-header'>
+        <div className='dc-day-header'>
           {this.state.date.format(this.props.dateFormat)}
         </div>
       );
@@ -82,9 +80,9 @@ var Day = React.createClass({
     var today = (this.state.date.format('YYYYMMDD') === this.props.today);
 
     var classes = classNames({
-      'data-calendar-day': true,
-      'data-calendar-day--today': today,
-      'data-calendar-day--outOfMonth': this._isOutOfMonth()
+      'dc-day': true,
+      'dc-day--today': today,
+      'dc-day--outOfMonth': this._isOutOfMonth()
     }, this.props.className);
 
     return (
@@ -96,4 +94,4 @@ var Day = React.createClass({
   }
 });
 
-module.exports = Day;
+export default Day;

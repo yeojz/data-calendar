@@ -5,7 +5,7 @@
  * @return integer  number of weeks in the month
  */
 
-module.exports = function(mDate){
+export default function(mDate){
   var numDaysInWeek = 7;
 
   // First Integer Day (Sun/Mon/...) of the Month

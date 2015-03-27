@@ -14,9 +14,9 @@
  * @return string       Renderable space-separated CSS className.
  */
 
-var cx = require('./cx');
+import cx from './cx';
 
-module.exports = function(options, classNames){
+export default function(options, classNames){
 
   var classNameArray = [];
 
@@ -24,7 +24,9 @@ module.exports = function(options, classNames){
     classNameArray.push(cx(options));
   }
 
-  if (typeof classNames === 'string' && classNames.trim() !== ''){
+  if (typeof classNames === 'string' &&
+      classNames.trim() !== ''){
+
     classNameArray.push(classNames);
 
   } else if (Array.isArray(classNames)){
@@ -32,4 +34,4 @@ module.exports = function(options, classNames){
   }
 
   return classNameArray.join(' ');
-};
+}

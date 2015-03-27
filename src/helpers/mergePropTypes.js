@@ -9,23 +9,20 @@
  * @return object       an object of propTypes
  */
 
-module.exports = function(){
+export default function() {
 
-  var obj = {},
-      key,
-      arg,
-      i;
+  var obj = {};
 
-  for (i in arguments){
+  for (let i in arguments){
     if (arguments.hasOwnProperty(i)){
 
-      arg = arguments[i];
+      let arg = arguments[i];
 
       if (!(arg instanceof Object)){
         throw new Error('[mergePropType] One or more arguments is not of type `object`.');
       }
 
-      for (key in arg){
+      for (let key in arg){
         if (arg.hasOwnProperty(key)){
           obj[key] = arg[key];
         }
@@ -34,4 +31,4 @@ module.exports = function(){
   } // endfor
 
   return obj;
-};
+}

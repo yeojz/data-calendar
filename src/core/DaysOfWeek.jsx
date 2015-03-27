@@ -1,15 +1,14 @@
-var React = require('react'),
-    moment = require('moment');
+import React from 'react';
+import moment from 'moment';
 
-var classNames = require('../helpers/classNames');
+import {classNames} from '../helpers';
+import {moduleProps} from '../propTypes';
 
-var moduleProps = require('../propTypes/daysOfWeekProps');
-
-var DaysOfWeek = React.createClass({
+const DaysOfWeek = React.createClass({
 
   propTypes: moduleProps,
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       type: 'short'
     };
@@ -26,7 +25,7 @@ var DaysOfWeek = React.createClass({
    * @param string    predefined set of name types in moment.js
    * @returns array   the list of day names of a week
    */
-  _getNames: function(type){
+  _getNames(type){
     type = type || 'long';
 
     switch (type){
@@ -46,20 +45,20 @@ var DaysOfWeek = React.createClass({
    * Render
    * *************************************************** */
 
-  render: function() {
+  render() {
 
     var names = this._getNames(this.props.type);
 
     names = names.map(function(name, i){
       return (
-        <div key={i} className='data-calendar-daysofweek-day'>
+        <div key={i} className='dc-daysofweek-day'>
           {name}
         </div>
       );
     });
 
     var classes = classNames({
-      'data-calendar-daysofweek': true
+      'dc-daysofweek': true
     }, this.props.className);
 
     return (
@@ -70,4 +69,4 @@ var DaysOfWeek = React.createClass({
   }
 });
 
-module.exports = DaysOfWeek;
+export default DaysOfWeek;

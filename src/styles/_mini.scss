@@ -17,8 +17,8 @@
 
 
   // Base // --------------------------------------------------  
-  .data-calendar,
-  .data-calendar-addons {
+  .dc-month,
+  .dc-month--addons {
     width: $dc-width;
   }
 
@@ -26,8 +26,8 @@
 
   // Day // --------------------------------------------------
 
-  .data-calendar-day,
-  .data-calendar-daysofweek-day {
+  .dc-day,
+  .dc-daysofweek-day {
     display: inline-block;
     flex: 0 0 auto;
     height: $dc-day-height;
@@ -36,14 +36,14 @@
     width: $dc-day-width;
   }
 
-  .data-calendar-day {
+  .dc-day {
     &:first-child,
     &:last-child {
       background: $dc-weekend-background;
     }
   }
 
-  .data-calendar-daysofweek-day {
+  .dc-daysofweek-day {
     color: $dc-daysofweek-color;
     font-size: 0.6em;
     height: auto;
@@ -55,15 +55,15 @@
     }
   }
 
-  .data-calendar-day--outOfMonth {
+  .dc-day--outOfMonth {
     opacity: 0.4;
   }
 
-  .data-calendar-day--today {
+  .dc-day--today {
     background: #eee;
   }  
 
-  .data-calendar-day-header {
+  .dc-day-header {
     display: table-cell;
     height: $dc-day-height;
     position: relative;
@@ -76,7 +76,7 @@
 
   // Addons:Misc // --------------------------------------------------
 
-  .data-calendar-title {
+  .dc-addons-title {
     color: $dc-title-color;
     text-align: center;
     background-color: $dc-title-background;
@@ -85,7 +85,7 @@
 
    // Addons:Controls // --------------------------------------------------
 
-  .data-calendar-controls {
+  .dc-addons-controls {
     line-height: 1em;
     position: absolute;
     right: 0;
@@ -98,11 +98,11 @@
     }
   }
 
-  .data-calendar-controls-today {
+  .dc-addons-controls-today {
     display: none;
   } 
 
- .data-calendar-controls-next {
+ .dc-addons-controls-next {
     float: right;
 
     &:after {
@@ -113,7 +113,7 @@
     }
   }
 
- .data-calendar-controls-prev {
+ .dc-addons-controls-prev {
     float: left;
 
     &:before {

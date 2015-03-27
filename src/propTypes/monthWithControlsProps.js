@@ -1,6 +1,6 @@
 var React = require('react');
 
-module.exports = {
+export default {
   controls: React.PropTypes.oneOfType([
                   React.PropTypes.bool,
                   React.PropTypes.func

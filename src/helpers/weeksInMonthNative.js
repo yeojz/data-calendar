@@ -1,11 +1,11 @@
 /*
- * Calculates the Number of Weeks in a Month
+ * Calculates the Number of Weeks in a Month (no external library)
  *
  * @param integer   year (eg: 2015)
  * @param integer   month (1 -  12)
  * @return integer  number of weeks in the month
  */
-module.exports = function(year, month){
+export default function(year, month){
 
   var numDaysInWeek = 7;
 

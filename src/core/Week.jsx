@@ -1,17 +1,19 @@
-var React = require('react');
+import React from 'react';
 
-var children = require('../helpers/children'),
-    classNames = require('../helpers/classNames');
+import {children, classNames} from '../helpers';
 
-var Week = React.createClass({
+const Week = React.createClass({
 
+  propTypes: {
+    className: React.PropTypes.string
+  },
 
 
   /*
    * Render Helpers
    * *************************************************** */
 
-  _getDays: function(){
+  _getDays(){
 
     return children(this.props.children,
                     '__DataCalendarDay__',
@@ -25,12 +27,12 @@ var Week = React.createClass({
    * Render
    * *************************************************** */
 
-  render: function() {
+  render() {
 
     var days = this._getDays();
 
     var classes = classNames({
-      'data-calendar-week': true
+      'dc-week': true
     }, this.props.className);
 
     return (
@@ -41,4 +43,4 @@ var Week = React.createClass({
   }
 });
 
-module.exports = Week;
+export default Week;
