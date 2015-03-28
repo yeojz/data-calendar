@@ -1,6 +1,7 @@
 import children from './children';
 import classNames from './classNames';
 import cx from './cx';
+import eventPropTypes from './eventPropTypes';
 import invariant from './invariant';
 import mergePropTypes from './mergePropTypes';
 import objectFilter from './objectFilter';
@@ -11,6 +12,7 @@ export default {
   children: children,
   classNames: classNames,
   cx: cx,
+  eventPropTypes: eventPropTypes,
   invariant: invariant,
   mergePropTypes: mergePropTypes,
   objectFilter: objectFilter,

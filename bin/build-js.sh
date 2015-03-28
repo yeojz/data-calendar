@@ -3,6 +3,8 @@ mkdir -p ./dist/js
 
 # Compile JavaScript
 browserify \
+--extension=.js \
+--extension=.jsx \
 -t babelify \
 -x react \
 -x moment \

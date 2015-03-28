@@ -1,21 +1,9 @@
 .dc--full {
-  
-  $dc-day-width: 140px;
-  $dc-day-height: 120px;
-  $dc-width: 7 * $dc-day-width;
-
-  $dc-day-border-color: #eee;
-
-  $dc-title-color: #fff;
-  $dc-title-background: #1565c0;
-
-  $dc-weekend-background: #fcfcfc;
-
 
   // Base // --------------------------------------------------  
   .dc-month,
   .dc-month--addons {
-    width: $dc-width;
+    width: $dc-full-width;
   }
 
 
@@ -25,9 +13,9 @@
   .dc-daysofweek-day {
     display: inline-block;
     flex: 0 0 auto;
-    height: $dc-day-height;
+    height: $dc-full-day-height;
     position: relative;
-    width: $dc-day-width;
+    width: $dc-full-day-width;
 
     border: 1px $dc-day-border-color solid;
   }
@@ -35,11 +23,12 @@
   .dc-day {
     &:first-child,
     &:last-child {
-      background: $dc-weekend-background;
+      background: $dc-weekend-background-color;
     }
   }
 
-  .dc-day--outOfMonth {
+  .dc-day--outOfMonth .dc-entry,
+  .dc-day--outOfMonth .dc-day-header{
     opacity: 0.4;
   }
 
@@ -60,12 +49,26 @@
   }
 
 
+
+  // Entry // --------------------------------------------------
+
+  .dc-entry {
+    background: #0085BB;
+    border: 1px #fff solid;
+    box-sizing: border-box;
+    color: #fff;
+    display: block;
+    padding: 0.1em 0.3em;
+    width: 100%;
+  }
+
+
   // Addons:Misc // --------------------------------------------------
 
   .dc-addons-title {
     color: $dc-title-color;
     text-align: left;
-    background-color: $dc-title-background;
+    background-color: $dc-title-background-color;
     padding: 1em;
   }
 

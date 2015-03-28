@@ -1,8 +1,8 @@
-import Day from './Day.jsx';
-import DaysOfWeek from './DaysOfWeek.jsx';
-import Entry from './Entry.jsx';
-import Month from './Month.jsx';
-import Week from './Week.jsx';
+import Day from './Day';
+import DaysOfWeek from './DaysOfWeek';
+import Entry from './Entry';
+import Month from './Month';
+import Week from './Week';
 
 export default {
   Day: Day,

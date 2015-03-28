@@ -1,8 +1,8 @@
 import React from 'react';
 import moment from 'moment';
 
-import {children, classNames} from '../helpers';
-import {moduleProps} from '../propTypes';
+import {children, classNames, eventPropTypes} from '../helpers';
+import {dayProps} from '../propTypes';
 
 const Day = React.createClass({
 
@@ -10,7 +10,7 @@ const Day = React.createClass({
     __DataCalendarDay__: true
   },
 
-  propTypes: moduleProps,
+  propTypes: dayProps,
 
   getDefaultProps() {
     return {
@@ -66,7 +66,7 @@ const Day = React.createClass({
 
   render() {
 
-    var entries = this._getEntries(),
+    let entries = this._getEntries(),
         header = '';
 
     if (this.props.showDate) {
@@ -77,16 +77,21 @@ const Day = React.createClass({
       );
     }
 
-    var today = (this.state.date.format('YYYYMMDD') === this.props.today);
+    let today = (this.state.date.format('YYYYMMDD') === this.props.today);
 
-    var classes = classNames({
+    let mouseProps = eventPropTypes.getMouseProps(this.props);
+    mouseProps = eventPropTypes.setParams(mouseProps, this.state, this.props);
+
+    let classes = classNames({
       'dc-day': true,
       'dc-day--today': today,
       'dc-day--outOfMonth': this._isOutOfMonth()
     }, this.props.className);
 
     return (
-      <div className={classes}>
+      <div
+        {...mouseProps}
+        className={classes}>
         {header}
         {entries}
       </div>

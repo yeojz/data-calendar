@@ -1,13 +1,12 @@
 import React from 'react';
 import moment from 'moment';
 
-import {classNames, weeksInMonth} from '../helpers';
-import {moduleProps} from '../propTypes';
+import {classNames, eventPropTypes, weeksInMonth} from '../helpers';
+import {monthProps} from '../propTypes';
 
-var Day = require('./Day.jsx'),
-    Entry = require('./Entry.jsx'),
-    Week = require('./Week.jsx');
-
+import Day from './Day';
+import Entry from './Entry';
+import Week from './Week';
 
 const Month = React.createClass({
 
@@ -15,7 +14,7 @@ const Month = React.createClass({
     __DataCalendarMonth__: true
   },
 
-  propTypes: moduleProps,
+  propTypes: monthProps,
 
 
   getDefaultProps() {
@@ -94,10 +93,10 @@ const Month = React.createClass({
     entries = entryList.map((entry, i) => {
       return (
         <Entry
-            data={entry}
-            entryDataGetter={this.props.entryDataGetter}
-            entryRenderer={this.props.entryRenderer}
-            key={i} />
+          data={entry}
+          entryDataGetter={this.props.entryDataGetter}
+          entryRenderer={this.props.entryRenderer}
+          key={i} />
       );
     });
 
@@ -108,10 +107,12 @@ const Month = React.createClass({
 
   __getDay(date){
 
-    var entries = this.__getEntries(date);
+    let entries = this.__getEntries(date);
+    let dayMouseProps = eventPropTypes.getMouseProps(this.props, 'Day');
 
     return (
       <Day
+        {...dayMouseProps}
         date={date}
         key={date}
         rangeStart={this.state.rangeStart}
@@ -127,14 +128,14 @@ const Month = React.createClass({
 
   __getWeek(startDate, idx){
 
-    var week = [];
+    let week = [];
 
     // Offset the start
     startDate.add(-1, 'day');
 
     // Loop through 1 Week
-    for (var i = 0; i < 7; i++){
-      var date = startDate.add(1, 'day').format('YYYYMMDD');
+    for (let i = 0; i < 7; i++){
+      let date = startDate.add(1, 'day').format('YYYYMMDD');
       week.push(this.__getDay(date));
     }
 
@@ -153,12 +154,12 @@ const Month = React.createClass({
    * *************************************************** */
 
   _getWeeks(){
-    var weeks = [];
+    let weeks = [];
 
-    for (var i = 0; i < this.state.numberOfWeeks; i++){
+    for (let i = 0; i < this.state.numberOfWeeks; i++){
 
       // Create New Instances
-      var m = this.__getDate(this.props),
+      let m = this.__getDate(this.props),
           start = i * 7;
 
       // Get Start of the week
@@ -179,9 +180,9 @@ const Month = React.createClass({
 
   render() {
 
-    var weeks = this._getWeeks();
+    let weeks = this._getWeeks();
 
-    var classes = classNames({
+    let classes = classNames({
       'dc-month': true
     }, this.props.className);
 

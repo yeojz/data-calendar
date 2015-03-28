@@ -2,11 +2,15 @@ import React from 'react';
 import moment from 'moment';
 
 import {classNames} from '../helpers';
-import {moduleProps} from '../propTypes';
+import {daysOfWeekProps} from '../propTypes';
 
 const DaysOfWeek = React.createClass({
 
-  propTypes: moduleProps,
+  statics: {
+    __DataCalendarDaysOfWeek__: true
+  },
+
+  propTypes: daysOfWeekProps,
 
   getDefaultProps() {
     return {

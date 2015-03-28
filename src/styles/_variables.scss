@@ -1,0 +1,26 @@
+
+
+// Shared Stuff // --------------------------------------------------
+$dc-month-border-color: #eee;
+$dc-day-border-color: $dc-month-border-color;
+
+$dc-title-color: #fff;
+$dc-title-background-color: #1565c0;
+
+$dc-weekend-background-color: #f9f9f9;
+
+$dc-daysofweek-color: #888;
+
+
+
+
+// Full Sized Calendar // --------------------------------------------------
+$dc-full-day-width: 140px;
+$dc-full-day-height: 120px;
+$dc-full-width: 7 * $dc-full-day-width;
+  
+
+// Mini Calendar // --------------------------------------------------  
+$dc-mini-day-width: 2rem;
+$dc-mini-day-height: 2rem;
+$dc-mini-width: 7 * $dc-mini-day-width;

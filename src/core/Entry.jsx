@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {classNames} from '../helpers';
-import {moduleProps} from '../propTypes';
+import {entryProps} from '../propTypes';
 
 const Entry = React.createClass({
 
@@ -9,7 +9,7 @@ const Entry = React.createClass({
     __DataCalendarEntry__: true
   },
 
-  propTypes: moduleProps,
+  propTypes: entryProps,
 
 
 

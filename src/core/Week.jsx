@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {children, classNames} from '../helpers';
+import {children, classNames, eventPropTypes} from '../helpers';
 
 const Week = React.createClass({
 
@@ -29,14 +29,15 @@ const Week = React.createClass({
 
   render() {
 
-    var days = this._getDays();
+    let days = this._getDays();
 
-    var classes = classNames({
+    let classes = classNames({
       'dc-week': true
     }, this.props.className);
 
     return (
-      <div className={classes}>
+      <div
+        className={classes}>
         {days}
       </div>
     );

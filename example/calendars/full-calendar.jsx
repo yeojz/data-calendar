@@ -1,6 +1,6 @@
 var React = require('react');
 
-var Month = require('../../src/addons').Month;
+var Month = require('../dep').Addons.MonthWithControls;
 
 var data = require('./data.js');
 

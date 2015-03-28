@@ -10,7 +10,8 @@ import {DaysOfWeek, Month} from '../core';
 const MonthWithControls = React.createClass({
 
   statics: {
-    __DataCalendarMonthAddons__: true
+    __DataCalendarAddons__: true,
+    __DataCalendarMonth__: true
   },
 
   _propTypeKeys: Object.keys(monthWithControlsProps),
@@ -30,14 +31,12 @@ const MonthWithControls = React.createClass({
     };
   },
 
-  getInitialState() {
-    return {
+  componentWillMount() {
+    this.setState({
       year: this.props.year,
       month: this.props.month
-    };
+    });
   },
-
-
 
 
   /*
@@ -161,7 +160,7 @@ const MonthWithControls = React.createClass({
 
     var classes = classNames({
       'dc-addons': true,
-      'dc-month--addons': true
+      'dc-addons--month': true
     }, this.props.className);
 
     // Removes all extra props for this module

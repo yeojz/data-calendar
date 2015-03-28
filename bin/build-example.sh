@@ -12,15 +12,17 @@ autoprefixer ./example/assets/bundle.css
 
 # Make JS
 browserify \
+--extension=.js \
+--extension=.jsx \
 -t babelify \
 -x react \
 -x moment \
--r ./example/example.jsx \
+-r ./example/example.jsx:example \
 -o ./example/assets/bundle.js
 
-# Make Vendor JS
-browserify \
--r react:react \
--r moment:moment \
--r ./bin/dummyFile \
--o ./example/assets/vendor.js
+# # Make Vendor JS
+# browserify \
+# -r react:react \
+# -r moment:moment \
+# -r ./bin/dummyFile \
+# -o ./example/assets/vendor.js

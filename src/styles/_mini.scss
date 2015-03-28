@@ -1,25 +1,12 @@
 
 .dc--mini {
 
-  
-  $dc-day-width: 2rem;
-  $dc-day-height: 2rem;
-  $dc-width: 7 * $dc-day-width;
-
-  $dc-day-border-color: #eee;
-
-  $dc-title-color: #fff;
-  $dc-title-background: #1565c0;
-
-  $dc-weekend-background: #f9f9f9;
-
-  $dc-daysofweek-color: #888;
 
 
   // Base // --------------------------------------------------  
   .dc-month,
   .dc-month--addons {
-    width: $dc-width;
+    width: $dc-mini-width;
   }
 
 
@@ -30,16 +17,16 @@
   .dc-daysofweek-day {
     display: inline-block;
     flex: 0 0 auto;
-    height: $dc-day-height;
+    height: $dc-mini-day-height;
     position: relative;
     text-align: center;
-    width: $dc-day-width;
+    width: $dc-mini-day-width;
   }
 
   .dc-day {
     &:first-child,
     &:last-child {
-      background: $dc-weekend-background;
+      background: $dc-weekend-background-color;
     }
   }
 
@@ -65,11 +52,11 @@
 
   .dc-day-header {
     display: table-cell;
-    height: $dc-day-height;
+    height: $dc-mini-day-height;
     position: relative;
     text-align: center;
     vertical-align: middle;
-    width: $dc-day-width;
+    width: $dc-mini-day-width;
   }
 
 
@@ -79,7 +66,7 @@
   .dc-addons-title {
     color: $dc-title-color;
     text-align: center;
-    background-color: $dc-title-background;
+    background-color: $dc-title-background-color;
     padding: 1em;   
   }
 
