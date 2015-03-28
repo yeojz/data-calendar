@@ -1,4 +1,4 @@
-mkdir -p example/assets
+mkdir -p ./example/assets
 
 # Copy CSS
 # Compiles Sass to CSS
@@ -11,5 +11,16 @@ node_modules/node-sass/bin/node-sass \
 autoprefixer ./example/assets/bundle.css
 
 # Make JS
-# browserify -t reactify ./example/example.jsx -o ./example/assets/bundle.js
+browserify \
+-t babelify \
+-x react \
+-x moment \
+-r ./example/example.jsx \
+-o ./example/assets/bundle.js
 
+# Make Vendor JS
+browserify \
+-r react:react \
+-r moment:moment \
+-r ./bin/dummyFile \
+-o ./example/assets/vendor.js

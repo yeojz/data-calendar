@@ -1,6 +1,13 @@
-module.exports = {
-  Entry: require('./core/Entry.jsx'),
-  Day: require('./core/Day.jsx'),
-  Week: require('./core/Week.jsx'),
-  Month: require('./core/Month.jsx')
+import {Day, Entry, Month, Week} from './core';
+import Addons from './addons';
+import Helpers from './helpers';
+
+export default {
+  Day: Day,
+  Entry: Entry,
+  Month: Month,
+  Week: Week,
+
+  Addons: Addons,
+  Helpers: Helpers
 };

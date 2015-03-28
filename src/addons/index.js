@@ -1,3 +1,5 @@
-module.exports = {
-  MonthWithControls: require('./MonthWithControls.jsx')
+import MonthWithControls from './MonthWithControls.jsx';
+
+export default {
+  MonthWithControls: MonthWithControls
 };

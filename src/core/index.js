@@ -1,7 +1,13 @@
-module.exports = {
-  Day: require('./Day.jsx'),
-  DaysOfWeek: require('./DaysOfWeek.jsx'),
-  Entry: require('./Entry.jsx'),
-  Month: require('./Month.jsx'),
-  Week: require('./Week.jsx')
+import Day from './Day.jsx';
+import DaysOfWeek from './DaysOfWeek.jsx';
+import Entry from './Entry.jsx';
+import Month from './Month.jsx';
+import Week from './Week.jsx';
+
+export default {
+  Day: Day,
+  DaysOfWeek: DaysOfWeek,
+  Entry: Entry,
+  Month: Month,
+  Week: Week
 };
